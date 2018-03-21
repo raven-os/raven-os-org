@@ -555,6 +555,12 @@ section:hover .section-header .section-title {
     z-index: 900;
 }
 
+@media screen and (max-width: 1800px) {
+    .red-line {
+        stroke-width: 0;
+    }
+}
+
 /* First point section */
 #first-point {
     background-color: var(--primary);

@@ -9,7 +9,7 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
 }
 
 .cocoen * {
@@ -30,7 +30,7 @@
 }
 
 .cocoen > div:first-child, picture .cocoen > div {
-    height: 100%;
+    height: auto;
     left: 0;
     overflow: hidden;
     position: absolute;

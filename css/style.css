@@ -502,7 +502,7 @@ section:hover .section-header .section-title {
 #second-point .sp-container,
 #third-point .tp-container {
     text-align: center;
-    vertical-align: middle;
+    vertical-align: middle !important;
 }
 
 #first-point .fp-container .background,
@@ -511,7 +511,13 @@ section:hover .section-header .section-title {
     max-width: 100%;
     padding-left: 100px;
     padding-right: 100px;
-    z-index: 900;
+}
+
+#second-point .sp-container .background,
+#third-point .tp-container .background {
+    max-width: 100%;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 
 @media (max-width: 768px) {
@@ -545,6 +551,11 @@ section:hover .section-header .section-title {
     }
 }
 
+#first-point .fp-container .content .section-header,
+#third-point .tp-container .content .section-header {
+    margin-top: 30px;
+}
+
 .red-line {
     stroke: var(--accent);
     stroke-width: 3;
@@ -576,6 +587,10 @@ section:hover .section-header .section-title {
     background-color: var(--white);
     background-size: cover;
     padding: 80px 0 60px 0;
+}
+
+#second-point .sp-container .content {
+    margin-bottom: 50px;
 }
 
 /* Third point section */

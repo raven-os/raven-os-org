@@ -1,5 +1,20 @@
 ﻿jQuery(document).ready(function ($) {
 
+    if (window.innerWidth < 768) {
+	$('.test').addClass('order-2');
+	$('.test2').addClass('order-1');
+    }
+
+    $(window).resize(function() {
+	if (window.innerWidth < 768) {
+	    $('.test').addClass('order-2');
+	    $('.test2').addClass('order-1');
+	} else {
+	    $('.test').removeClass('order-2');
+	    $('.test2').removeClass('order-1');
+	}
+    });
+
     // Header fixed and Back to top button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 100) {

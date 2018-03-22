@@ -516,8 +516,6 @@ section:hover .section-header .section-title {
 #third-point .tp-container .background {
     max-width: 100%;
     padding:0;
-    /* padding-left: 100px; */
-    /* padding-right: 100px; */
 }
 
 .cocoen,
@@ -525,13 +523,6 @@ section:hover .section-header .section-title {
     border:2px solid black;
     border-radius: 5px;
 }
-
-/* #second-point .sp-container .background, */
-/* #third-point .tp-container .background { */
-/*     max-width: 100%; */
-/*     border:3px solid black; */
-/*     border-radius:px; */
-/* } */
 
 @media (max-width: 768px) {
     #first-point .fp-container .background,

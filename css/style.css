@@ -563,6 +563,7 @@ section:hover .section-header .section-title {
 .svg-line {
     width:100%;
     position:absolute;
+    margin-top:-80px;
 }
 
 .red-line {
@@ -575,20 +576,24 @@ section:hover .section-header .section-title {
     z-index: 900;
 }
 
-@media screen and (max-width: 1800px) {
+@media screen and (max-width: 990px) {
     .red-line {
-        stroke-width: 0;
+        display:none;
     }
 }
 
+/* @media screen and (max-width: 1200px) { */
+/*     .content { */
+/* 	padding:0; */
+/*     } */
+
+/* } */
+
 /* First point section */
+
 #first-point {
     background-color: var(--primary);
     padding: 80px 0 60px 0;
-}
-
-#first-point .fp-container {
-    margin-top: -2000px;
 }
 
 /* Second point section */

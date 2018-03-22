@@ -21,7 +21,7 @@
 }
 
 .cocoen img, .cocoen picture > img {
-    max-width: none
+    max-width: none;
 }
 
 .cocoen > img, .cocoen > picture > img {

@@ -562,7 +562,7 @@ section:hover .section-header .section-title {
 
 .svg-line {
     width:100%;
-    height:2000px;
+    position:absolute;
 }
 
 .red-line {

@@ -498,6 +498,7 @@ section:hover .section-header .section-title {
 }
 
 .section-header .section-description {
+    text-transform:uppercase;
     text-align: center;
     padding-bottom: 40px;
     color: var(--primary-dark);
@@ -535,25 +536,21 @@ section:hover .section-header .section-title {
     }
 }
 
-#first-point .fp-container .content,
-#second-point .sp-container .content,
-#third-point .tp-container .content {
-    text-align: justify;
-    padding-left: 100px;
-    padding-right: 100px;
+.content {
+    padding:0 95px;
+    text-align:justify;
 }
 
-@media (max-width: 768px) {
-    #first-point .fp-container .content,
-    #second-point .sp-container .content,
-    #third-point .tp-container .content {
-        text-align: justify;
-        padding-left: 20px;
-        padding-right: 20px;
-        margin-bottom: 20px;
-        margin-top: 20px;
+@media screen and (max-width: 1200px) {
+    .content {
+	padding:0 30px;
+    }
+
+    .section-header .section-description {
+	padding-bottom:6px;
     }
 }
+
 
 #first-point .fp-container .content .section-header,
 #third-point .tp-container .content .section-header {
@@ -581,13 +578,6 @@ section:hover .section-header .section-title {
         display:none;
     }
 }
-
-/* @media screen and (max-width: 1200px) { */
-/*     .content { */
-/* 	padding:0; */
-/*     } */
-
-/* } */
 
 /* First point section */
 

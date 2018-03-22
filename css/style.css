@@ -408,7 +408,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     background-size: cover;
 }
 
-@media (max-width:768px) {
+@media (max-width:990px) {
     #hero {
 	background-position:80% 50%;
     }

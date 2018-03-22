@@ -39,32 +39,29 @@
 }
 
 .cocoen-drag {
-    background: #000;
+    background: #fff;
     bottom: 0;
     cursor: ew-resize;
     left: 50%;
     margin-left: -1px;
     position: absolute;
     top: 0;
-    width: 10px;
-    border-left: 2px solid #fff;
-    border-right: 2px solid #fff;
+    width: 0px;
 }
 
 .cocoen-drag::before {
-    border: 2px solid #fff;
-    background-color: #000;
-    content: '< >';
+    box-shadow: 0px 0px 5px 2px inset;
+    background-color: #ed254e;
+    content: url('../img/double-caret.png');
     color: white;
-    font-size: 13px;
+    font-size: 35px;
     text-align: center;
-    line-height: 25px;
-    height: 30px;
+    line-height: 53px;
+    height: 50px;
+    width: 50px;
     left: 50%;
-    margin-left: -15px;
-    margin-top: 0px;
+    margin: -25px 0 0 -25px;
     position: absolute;
     top: 50%;
-    width: 30px;
     border-radius: 50%;
 }

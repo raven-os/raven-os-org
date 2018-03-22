@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -77,24 +77,32 @@
         ============================-->
         <section id="first-point">
             <div class="container-fluid wow fadeInUp">
-                <svg class="svg-line" width="100%" height="2000">
-                    <path id="red-line" class="red-line" d="M 200 0 L 200 550 Q 200,600 250,600 L 1550 600 Q 1600,600 1600,650 L 1600 1225 Q 1600,1275 1550,1275 L 500 1275
-                          Q 450,1275 450,1325 L 450 1850"></path>
+              <div class="row fp-container">
+		<div class="col-lg-1"></div>
+		<svg class="svg-line" viewBox="0 0 2000 2000"
+		     xmlns="http://www.w3.org/2000/svg" version="1.1">
+		  <!-- V = ligne vers coordonnée sur x et H = ligne vers coordonée sur y -->
+                  <path id="red-line" class="red-line" d="M 200 0
+							  V 550 q 0,50 50,50
+							  H 1550 q 50,0 50,50
+							  V 1250 q 0,50 -50,50
+							  H 500 q -50,0 -50,50
+							  V 1850"></path>
                 </svg>
-
-                <div class="row fp-container">
-                    <div class="col-lg-7 col-md-12 col-xs-12 order-1 order-lg-1">
-                        <img class="background" src="img/RavenInstall.png" />
-                    </div>
-                    <div class="col-lg-5 col-md-12 col-xs-12 order-2 order-lg-2 content">
-                        <div class="section-header">
-                            <h3 class="section-title">Adaptive</h3>
-                            <p class="section-description">Meet Raven</p>
-                        </div>
-
-                        With only a few questions, Raven will be able to know where you come from and what is your affinity with computers. 
-                    </div>
+		<div class="col-lg-6 flip-img">
+                  <img class="img-fluid" src="img/RavenInstall.png" />
                 </div>
+		<div class="col-lg-4 content flip-title">
+                  <div class="section-header">
+                    <h3 class="section-title">Adaptive</h3>
+                    <p class="section-description">Meet Raven</p>
+                  </div>
+		  <p>
+                    With only a few questions, Raven will be able to know where you come from and what is your affinity with computers.
+		  </p>
+                </div>
+		<div class="col-lg-1"></div>
+	      </div>
             </div>
         </section>
         <!--==========================
@@ -103,21 +111,24 @@
         <section id="second-point">
             <div class="container-fluid wow fadeInUp">
                 <div class="row sp-container">
-                    <div class="col-lg-5 order-1 order-xs-2 content">
+		  <div class="col-lg-1"></div>
+                  <div class="col-lg-4 content">
                         <div class="section-header">
                             <h3 class="section-title">Customizable</h3>
                             <p class="section-description">Tame Raven</p>
                         </div>
-
-                        It will then configure your interfaces and the software you want to install, depending on how you answered. But do not worry, you will always be able to customize your system yourself as you wish!
+			<p>
+                          It will then configure your interfaces and the software you want to install, depending on how you answered. But do not worry, you will always be able to customize your system yourself as you wish!
+			 </p>
                     </div>
-                    <div class="col-lg-7 order-2 order-xs-1 background">
+		    <div class="col-lg-6 img-fluid">
                         <div class="cocoen">
                             <img src="img/Desktop1.png" />
                             <img src="img/Desktop2.png" />
                         </div>
                     </div>
-                </div>
+		    <div class="col-lg-1"></div>
+		</div>
             </div>
             </div>
         </section>
@@ -127,18 +138,21 @@
         <section id="third-point">
             <div class="container-fluid wow fadeInUp">
                 <div class="row tp-container">
-                    <div class="col-lg-7 order-1 order-lg-1">
-                        <img class="background" src="img/RavenAudio.gif" />
+		  <div class="col-lg-1"></div>
+		  <div class="col-lg-6 flip-img">
+                        <img class="img-fluid" src="img/RavenAudio.gif" />
+                  </div>
+		  <div class="col-lg-4 content flip-title">
+                    <div class="section-header">
+                      <h3 class="section-title">Evolutive</h3>
+                      <p class="section-description">Raise Raven</p>
                     </div>
-                    <div class="col-lg-5 order-2 order-lg-2 content">
-                        <div class="section-header">
-                            <h3 class="section-title">Evolutive</h3>
-                            <p class="section-description">Raise Raven</p>
-                        </div>
-
-                        Become better and your software will progress with you. Master the most complex tools until they have no more secrets for you!
+		    <p>
+                      Become better and your software will progress with you. Master the most complex tools until they have no more secrets for you!
+		      </p>
                     </div>
-                </div>
+		   <div class="col-lg-1"></div>
+		</div>
             </div>
         </section>
         <!--==========================
@@ -291,19 +305,15 @@
           Newsletter Section
         ============================-->
         <section id="news">
-            <div class="container wow fadeInUp">
-                <div style="height: 150px"></div>
+            <div class="form-bg wow fadeInUp">
                 <div class="section-header">
                     <h3 class="section-title">Newsletter</h3>
                     <p class="section-description">Need some news of the project? Subscribe to our newsletter!</p>
                 </div>
-            </div>
-            <div class="form-bg wow fadeInUp" style="text-align: center;">
                 <form id="form-subscribe" name="subscribe" action="#" method="get">
                     <input class="form-control" name="email-subscribe" id="email-subscribe" placeholder="Your Email" data-rule="email-subscribe" data-msg="Please enter a valid email" />
                     <button type="submit" class="btn-suscribe">Subscribe</button>
                 </form>
-                <div style="height: 150px"></div>
             </div>
         </section><!-- #news -->
     </main>

@@ -1,22 +1,39 @@
 ﻿jQuery(document).ready(function ($) {
 
-    // Header fixed and Back to top button
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 100) {
+    if (window.innerWidth < 990) {
+	$('.flip-img').addClass('order-2');
+	$('.flip-title').addClass('order-1');
+    }
+
+    $(window).resize(function() {
+	if (window.innerWidth < 990) {
+	    $('.flip-img').addClass('order-2');
+	    $('.flip-title').addClass('order-1');
+	} else {
+	    $('.flip-img').removeClass('order-2');
+	    $('.flip-title').removeClass('order-1');
+	}
+    });
+
+    function changeNavBar() {
+	if ($(this).scrollTop() > 100) {
             $('.back-to-top').fadeIn('slow');
             $('#header').addClass('header-fixed');
-        } else {
+	} else {
             $('.back-to-top').fadeOut('slow');
             $('#header').removeClass('header-fixed');
-        }
-    });
+	}
+    }
+
+    changeNavBar();
+    // Header fixed and Back to top button
+    $(window).scroll(changeNavBar);
     $('.back-to-top').click(function () {
         $('html, body').animate({ scrollTop: 0 }, 1500, 'easeInOutExpo');
         return false;
     });
 
     new Cocoen(document.querySelector('.cocoen'));
-    
     // Initiate the wowjs
     new WOW().init();
 
@@ -131,28 +148,28 @@
     // Offset the dashes so the it appears hidden entirely
     path.style.strokeDashoffset = pathLength;
     // Current line target percentage
-    var lineDrawPercentageTarget = 0;
+    var lineDrawRatioageTarget = 0;
     // Current line percentage
-    var lineDrawPercentage = 0;
+    var lineDrawRatioage = 0;
 
     // When the page scrolls...
     window.addEventListener("scroll", function (e) {
         // What % down is it? 
-        var scrollPercentage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+        var scrollRatioage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
 
 	// Set the target percentage
-	lineDrawPercentageTarget = scrollPercentage;
+	lineDrawRatioageTarget = scrollRatioage;
     });
     setInterval(function () {
 	// Update line status, proportionally to the distance of the targed
-	lineDrawPercentage += (lineDrawPercentageTarget - lineDrawPercentage) * 0.1;
+	lineDrawRatioage += (lineDrawRatioageTarget - lineDrawRatioage) * 0.1;
         // Length to offset the dashes
-        var drawLength = pathLength * lineDrawPercentage * 1.8;
+        var drawLength = pathLength * (lineDrawRatioage * 2.1 - 0.15);
         // Draw in reverse
         path.style.strokeDashoffset = pathLength - drawLength;
 
         // When complete, remove the dash array, otherwise shape isn't quite sharp
-        if (lineDrawPercentage >= 0.99) {
+        if (lineDrawRatioage >= 0.99) {
             path.style.strokeDasharray = "none";
         } else {
             path.style.strokeDasharray = pathLength + ' ' + pathLength;

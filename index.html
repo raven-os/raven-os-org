@@ -81,7 +81,13 @@
 		<div class="col-lg-1"></div>
 		<svg class="svg-line" viewBox="0 0 2000 2000"
 		     xmlns="http://www.w3.org/2000/svg" version="1.1">
-                  <path id="red-line" class="red-line" d="M 200 0 L 200 550 Q 200,600 250,600 L 1550 600 Q 1600,600 1600,650 L 1600 1250 Q 1600,1300 1550,1300 L 500 1300 Q 450,1300 450,1350 L 450 1850"></path>
+		  <!-- V = ligne vers coordonnée sur x et H = ligne vers coordonée sur y -->
+                  <path id="red-line" class="red-line" d="M 200 0
+							  V 550 q 0,50 50,50
+							  H 1550 q 50,0 50,50
+							  V 1250 q 0,50 -50,50
+							  H 500 q -50,0 -50,50
+							  V 1850"></path>
                 </svg>
 		<div class="col-lg-6 flip-img">
                   <img class="img-fluid" src="img/RavenInstall.png" />

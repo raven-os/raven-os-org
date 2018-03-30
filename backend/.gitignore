@@ -10,4 +10,4 @@ Cargo.lock
 **/*.rs.bk
 
 # Tool to manage our environment variables for us
-.env
+# .env

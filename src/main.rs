@@ -2,16 +2,23 @@
 #![plugin(rocket_codegen)]
 
 extern crate rocket;
+#[macro_use]
+extern crate diesel;
 extern crate dotenv;
 #[macro_use]
 extern crate lazy_static;
-extern crate website;
+
+#[macro_use]
+mod models;
+mod schema;
 
 use dotenv::dotenv;
 use std::env;
 use std::process::{self};
+use diesel::prelude::*;
+use self::models::{User, NewUser};
 
-use self::website::*;
+
 
 // The different environment variables we are using.
 //
@@ -29,6 +36,16 @@ lazy_static! {
     };
 }
 
+// Connect to database
+pub fn establish_connection() -> MysqlConnection {
+    dotenv().ok();
+
+    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    MysqlConnection::establish(&database_url)
+        .expect(&format!("Error connecting to {}", database_url))
+}
+
+// Add an user to database
 #[get("/email/<email>")]
 fn add_user(email: String) -> String {
     let connection = establish_connection();
@@ -36,6 +53,22 @@ fn add_user(email: String) -> String {
     let user = create_user(&connection, &email);
     format!("Added in database: [id: {}, email: {}]", user.id, user.email)
 }
+
+pub fn create_user<'a>(conn: &MysqlConnection, email: &'a str) -> User {
+    use schema::users;
+
+    let new_user = NewUser {
+        email: email
+    };
+
+    diesel::insert_into(users::table)
+        .values(&new_user)
+        .execute(conn)
+        .expect("Error saving new user");
+
+    users::table.order(users::id.desc()).first(conn).unwrap()
+}
+
 
 fn main() {
     dotenv().ok();

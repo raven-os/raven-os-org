@@ -17,7 +17,7 @@
 
 body {
     background: var(--primary-dark);
-    color: var(--primary-dark);
+    color: var(--primary);
     font-family: "Open Sans", sans-serif;
     margin: 0;
     padding: 0;
@@ -404,13 +404,13 @@ body.mobile-nav-active #mobile-nav-toggle {
     display: table;
     width: 100%;
     height: 100vh;
-    background: url(../img/RavenBackground.jpg) top center fixed;
+    background: url(../img/home_page/RavenBackground.jpg) top center fixed;
     background-size: cover;
 }
 
 @media (max-width:990px) {
     #hero {
-	background-position:80% 50%;
+        background-position: 80% 50%;
     }
 }
 
@@ -498,7 +498,7 @@ section:hover .section-header .section-title {
 }
 
 .section-header .section-description {
-    text-transform:uppercase;
+    text-transform: uppercase;
     text-align: center;
     padding-bottom: 40px;
     color: var(--primary-dark);
@@ -516,12 +516,12 @@ section:hover .section-header .section-title {
 #second-point .sp-container .background,
 #third-point .tp-container .background {
     max-width: 100%;
-    padding:0;
+    padding: 0;
 }
 
 .cocoen,
 #third-point .tp-container .img-fluid {
-    border:2px solid black;
+    border: 2px solid black;
     border-radius: 5px;
 }
 
@@ -537,17 +537,17 @@ section:hover .section-header .section-title {
 }
 
 .content {
-    padding:0 95px;
-    text-align:justify;
+    padding: 0 95px;
+    text-align: justify;
 }
 
 @media screen and (max-width: 1200px) {
     .content {
-	padding:0 30px;
+        padding: 0 30px;
     }
 
     .section-header .section-description {
-	padding-bottom:6px;
+        padding-bottom: 6px;
     }
 }
 
@@ -558,9 +558,9 @@ section:hover .section-header .section-title {
 }
 
 .svg-line {
-    width:100%;
-    position:absolute;
-    margin-top:-80px;
+    width: 100%;
+    position: absolute;
+    margin-top: -80px;
 }
 
 .red-line {
@@ -575,7 +575,7 @@ section:hover .section-header .section-title {
 
 @media screen and (max-width: 990px) {
     .red-line {
-        display:none;
+        display: none;
     }
 }
 
@@ -607,7 +607,7 @@ section:hover .section-header .section-title {
 /* Contact Section
 --------------------------------*/
 #contact {
-    background: url(../img/RavenContact.jpg) center no-repeat;
+    background: url(../img/home_page/RavenContact.jpg) center no-repeat;
     background-size: cover;
     padding: 80px 0 40px 0;
     text-align: center;
@@ -707,7 +707,7 @@ section:hover .section-header .section-title {
 
 /* Newsletter Section */
 #news {
-    background: url(../img/RavenNews.jpg) center no-repeat;
+    background: url(../img/home_page/RavenNews.jpg) center no-repeat;
     background-size: cover;
     padding: 80px 0px 60px 0px;
 }
@@ -727,12 +727,12 @@ section:hover .section-header .section-title {
 
 .form-bg {
     margin: 150px 0 150px 0;
-    text-align:center;
+    text-align: center;
 }
 
 @media screen and (max-width:768px) {
     .form-bg {
-	margin:0;
+        margin: 0;
     }
 }
 

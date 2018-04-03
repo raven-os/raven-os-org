@@ -3,6 +3,7 @@ use super::schema::users;
 #[derive(Queryable)]
 #[derive(Debug)]
 pub struct User {
+    pub id: i32,
     pub email: String,
     pub token: String
 }

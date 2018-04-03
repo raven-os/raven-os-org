@@ -27,10 +27,11 @@ mod db;
 // Add an user to database
 #[get("/email/<email>")]
 fn add_user(connection: DbConn, email: String) -> String {
-    //let connection = establish_connection();
 
-    let user = db::create_user(&connection, &email);
-    format!("Added in database: [email: {}]", user.email)
+    match db::create_user(&connection, &email) {
+        Ok(user) => format!("Added user [email: {}, token: {}]", user.email, user.token),
+        Err(_)   => format!("Error: cannot add '{}', already created", email)
+    }
 }
 
 // Delete an user from database
@@ -38,8 +39,29 @@ fn add_user(connection: DbConn, email: String) -> String {
 fn remove_user(connection: DbConn, email: String, token: String) -> String {
     //let connection = establish_connection();
 
-    db::delete_user(&connection, &email, &token);
-    format!("Deleted in database:")
+    match db::delete_user(&connection, &email, &token) {
+        Ok(n) if n <= 0                => format!("Not removed"),
+        Ok(_)                          => format!("Bye"),
+        Err(ref s) if s == "Not found" => format!("Not found"),
+        Err(ref s) if s == "Forbidden" => format!("Forbidden"),
+        Err(s)                         => format!("{}", s)
+    }
+}
+
+#[get("/emails")]
+fn get_users(connection: DbConn) -> String {
+
+    match db::get_all_users(&connection) {
+        Err(s) => format!("error {}", s),
+        Ok(users) => {
+            let mut response = "".to_string();
+            for user in users {
+                response.push_str(&user.email);
+                response.push_str("\n")
+            }
+            response
+        }
+    }
 }
 
 fn main() {
@@ -53,7 +75,7 @@ fn main() {
 
     rocket::ignite()
         .manage(init_pool(&database_url))
-        .mount("/", routes![add_user, remove_user])
+        .mount("/", routes![add_user, remove_user, get_users])
         .launch();
 }
 

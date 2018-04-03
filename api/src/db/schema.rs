@@ -1,5 +1,6 @@
 table! {
-    users (email) {
+    users (id) {
+        id -> Integer,
         email -> Varchar,
         token -> Varchar,
     }

@@ -1,5 +1,5 @@
 #[macro_use]
-mod models;
+pub mod models;
 mod schema;
 
 use self::models::{NewUser, User};

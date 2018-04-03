@@ -10,12 +10,27 @@ extern crate diesel;
 extern crate r2d2;
 extern crate r2d2_diesel;
 
+#[macro_use]
+extern crate serde_derive;
+
+extern crate serde;
+
+extern crate rocket_contrib;
+
 use std::process;
 
 use diesel::mysql::MysqlConnection;
 use r2d2_diesel::ConnectionManager;
 
 type Pool = r2d2::Pool<ConnectionManager<MysqlConnection>>;
+
+use rocket::http::Status;
+use rocket::request::{self, FromRequest};
+use rocket::{Outcome, Request, State};
+
+use rocket_contrib::Json;
+
+use rocket::response::status::Custom;
 
 /// Initializes a database pool.
 fn init_pool(database_url: &str) -> Pool {
@@ -25,41 +40,34 @@ fn init_pool(database_url: &str) -> Pool {
 
 mod db;
 
+use db::models::User;
+
 // Add an user to database
-#[get("/email/<email>")]
-fn add_user(connection: DbConn, email: String) -> String {
+#[get("/email/<email>", format = "application/json")]
+fn add_user(connection: DbConn, email: String) -> Result<Custom<Json<User>>, Custom<String>> {
     match db::create_user(&connection, &email) {
-        Ok(user) => format!("Added user [email: {}, token: {}]", user.email, user.token),
-        Err(_) => format!("Error: cannot add '{}', already created", email),
+        Ok(user) => Ok(Custom(Status::Ok, Json(user))),
+        Err(_) => Err(Custom(Status::BadRequest, "Already registered".to_string())),
     }
 }
 
 // Delete an user from database
 #[get("/email/delete/<email>/<token>")]
-fn remove_user(connection: DbConn, email: String, token: String) -> String {
-    //let connection = establish_connection();
-
+fn remove_user(connection: DbConn, email: String, token: String) -> Custom<String> {
     match db::delete_user(&connection, &email, &token) {
-        Ok(n) if n == 0 => "Not removed".to_string(),
-        Ok(_) => "Bye".to_string(),
-        Err(ref s) if s == "Not found" => "Not found".to_string(),
-        Err(ref s) if s == "Forbidden" => "Forbidden".to_string(),
-        Err(s) => format!("{}", s),
+        Ok(n) if n == 0 => Custom(Status::InternalServerError, "Not removed".to_string()),
+        Ok(_) => Custom(Status::Ok, "Success".to_string()),
+        Err(ref s) if s == "Not found" => Custom(Status::NotFound, "Not found".to_string()),
+        Err(ref s) if s == "Forbidden" => Custom(Status::Forbidden, "Forbidden".to_string()),
+        Err(s) => Custom(Status::InternalServerError, format!("{}", s)),
     }
 }
 
-#[get("/emails")]
-fn get_users(connection: DbConn) -> String {
+#[get("/emails", format = "application/json")]
+fn get_users(connection: DbConn) -> Result<Custom<Json<Vec<User>>>, Custom<String>> {
     match db::get_all_users(&connection) {
-        Err(s) => format!("error {}", s),
-        Ok(users) => {
-            let mut response = "".to_string();
-            for user in users {
-                response.push_str(&user.email);
-                response.push_str("\n")
-            }
-            response
-        }
+        Ok(users) => Ok(Custom(Status::Ok, Json(users))),
+        Err(s) => Err(Custom(Status::InternalServerError, format!("error {}", s))),
     }
 }
 
@@ -80,9 +88,6 @@ fn main() {
         .launch();
 }
 
-use rocket::http::Status;
-use rocket::request::{self, FromRequest};
-use rocket::{Outcome, Request, State};
 ///Connection Guard
 use std::ops::Deref;
 

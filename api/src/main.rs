@@ -7,10 +7,10 @@ extern crate rocket;
 
 #[macro_use]
 extern crate diesel;
-extern crate r2d2_diesel;
 extern crate r2d2;
+extern crate r2d2_diesel;
 
-use std::process::{self};
+use std::process;
 
 use diesel::mysql::MysqlConnection;
 use r2d2_diesel::ConnectionManager;
@@ -28,10 +28,9 @@ mod db;
 // Add an user to database
 #[get("/email/<email>")]
 fn add_user(connection: DbConn, email: String) -> String {
-
     match db::create_user(&connection, &email) {
         Ok(user) => format!("Added user [email: {}, token: {}]", user.email, user.token),
-        Err(_)   => format!("Error: cannot add '{}', already created", email)
+        Err(_) => format!("Error: cannot add '{}', already created", email),
     }
 }
 
@@ -41,17 +40,16 @@ fn remove_user(connection: DbConn, email: String, token: String) -> String {
     //let connection = establish_connection();
 
     match db::delete_user(&connection, &email, &token) {
-        Ok(n) if n == 0                => "Not removed".to_string(),
-        Ok(_)                          => "Bye".to_string(),
+        Ok(n) if n == 0 => "Not removed".to_string(),
+        Ok(_) => "Bye".to_string(),
         Err(ref s) if s == "Not found" => "Not found".to_string(),
         Err(ref s) if s == "Forbidden" => "Forbidden".to_string(),
-        Err(s)                         => format!("{}", s)
+        Err(s) => format!("{}", s),
     }
 }
 
 #[get("/emails")]
 fn get_users(connection: DbConn) -> String {
-
     match db::get_all_users(&connection) {
         Err(s) => format!("error {}", s),
         Ok(users) => {
@@ -69,9 +67,11 @@ fn main() {
     dotenv::dotenv().ok();
 
     let database_url = match std::env::var("DATABASE_URL") {
-        Ok(s) => { s },
-        Err(_) => { eprintln!("error: the DATABASE_URL variable is not set.");
-                    process::exit(1); }
+        Ok(s) => s,
+        Err(_) => {
+            eprintln!("error: the DATABASE_URL variable is not set.");
+            process::exit(1);
+        }
     };
 
     rocket::ignite()
@@ -80,12 +80,11 @@ fn main() {
         .launch();
 }
 
-
-///Connection Guard
-use std::ops::Deref;
 use rocket::http::Status;
 use rocket::request::{self, FromRequest};
-use rocket::{Request, State, Outcome};
+use rocket::{Outcome, Request, State};
+///Connection Guard
+use std::ops::Deref;
 
 // Connection request guard type: a wrapper around an r2d2 pooled connection.
 pub struct DbConn(pub r2d2::PooledConnection<ConnectionManager<MysqlConnection>>);
@@ -100,7 +99,7 @@ impl<'a, 'r> FromRequest<'a, 'r> for DbConn {
         let pool = request.guard::<State<Pool>>()?;
         match pool.get() {
             Ok(conn) => Outcome::Success(DbConn(conn)),
-            Err(_) => Outcome::Failure((Status::ServiceUnavailable, ()))
+            Err(_) => Outcome::Failure((Status::ServiceUnavailable, ())),
         }
     }
 }

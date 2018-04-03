@@ -32,52 +32,9 @@ use rocket_contrib::Json;
 
 use rocket::response::status::Custom;
 
-/// Initializes a database pool.
-fn init_pool(database_url: &str) -> Pool {
-    let manager = ConnectionManager::<MysqlConnection>::new(database_url);
-    r2d2::Pool::new(manager).expect("error creating database pool")
-}
-
 mod db;
 
 use db::models::User;
-
-// Add an user to database
-#[get("/email/<email>", format = "application/json")]
-fn add_user(connection: DbConn, email: String) -> Result<Custom<Json<User>>, Custom<String>> {
-    match db::create_user(&connection, &email) {
-        Ok(user) => Ok(Custom(Status::Ok, Json(user))),
-        Err(_) => Err(Custom(Status::BadRequest, "Already registered".to_string())),
-    }
-}
-
-// Delete an user from database
-#[get("/email/delete/<email>/<token>")]
-fn remove_user(connection: DbConn, email: String, token: String) -> Custom<String> {
-    match db::delete_user(&connection, &email, &token) {
-        Ok(n) if n == 0 => Custom(Status::InternalServerError, "Not removed".to_string()),
-        Ok(_) => Custom(Status::Ok, "Success".to_string()),
-        Err(ref s) if s == "Not found" => Custom(Status::NotFound, "Not found".to_string()),
-        Err(ref s) if s == "Forbidden" => Custom(Status::Forbidden, "Forbidden".to_string()),
-        Err(s) => Custom(Status::InternalServerError, format!("{}", s)),
-    }
-}
-
-#[get("/emails", format = "application/json")]
-fn get_users(connection: DbConn) -> Result<Custom<Json<Vec<User>>>, Custom<String>> {
-    match db::get_all_users(&connection) {
-        Ok(users) => Ok(Custom(Status::Ok, Json(users))),
-        Err(s) => Err(Custom(Status::InternalServerError, format!("error {}", s))),
-    }
-}
-
-#[get("/email/find/<email>", format = "application/json")]
-fn get_user(connection: DbConn, email: String) -> Result<Custom<Json<User>>, Custom<String>> {
-    match db::get_user(&connection, &email) {
-        Ok(user) => Ok(Custom(Status::Ok, Json(user))),
-        Err(s) => Err(Custom(Status::NotFound, s)),
-    }
-}
 
 fn main() {
     dotenv::dotenv().ok();
@@ -92,8 +49,58 @@ fn main() {
 
     rocket::ignite()
         .manage(init_pool(&database_url))
-        .mount("/", routes![add_user, remove_user, get_users, get_user])
+        .mount(
+            "/emails",
+            routes![add_user, remove_user, get_users, get_user],
+        )
         .launch();
+}
+
+/* ==================== ROUTE HANDLER ==================== */
+
+// Add an user to database
+#[post("/<email>")]
+fn add_user(connection: DbConn, email: String) -> Result<Custom<Json<User>>, Custom<String>> {
+    match db::create_user(&connection, &email) {
+        Ok(user) => Ok(Custom(Status::Ok, Json(user))),
+        Err(_) => Err(Custom(Status::BadRequest, "Already registered".to_string())),
+    }
+}
+
+// Delete an user from database
+#[delete("/<email>/<token>")]
+fn remove_user(connection: DbConn, email: String, token: String) -> Custom<String> {
+    match db::delete_user(&connection, &email, &token) {
+        Ok(n) if n == 0 => Custom(Status::InternalServerError, "Not removed".to_string()),
+        Ok(_) => Custom(Status::Ok, "Success".to_string()),
+        Err(ref s) if s == "Not found" => Custom(Status::NotFound, "Not found".to_string()),
+        Err(ref s) if s == "Forbidden" => Custom(Status::Forbidden, "Forbidden".to_string()),
+        Err(s) => Custom(Status::InternalServerError, format!("{}", s)),
+    }
+}
+
+#[get("/")]
+fn get_users(connection: DbConn) -> Result<Custom<Json<Vec<User>>>, Custom<String>> {
+    match db::get_all_users(&connection) {
+        Ok(users) => Ok(Custom(Status::Ok, Json(users))),
+        Err(s) => Err(Custom(Status::InternalServerError, format!("error {}", s))),
+    }
+}
+
+#[get("/<email>")]
+fn get_user(connection: DbConn, email: String) -> Result<Custom<Json<User>>, Custom<String>> {
+    match db::get_user(&connection, &email) {
+        Ok(user) => Ok(Custom(Status::Ok, Json(user))),
+        Err(s) => Err(Custom(Status::NotFound, s)),
+    }
+}
+
+/* ==================== DATABASE CONNECTION WRAPPER ==================== */
+
+/// Initializes a database pool.
+fn init_pool(database_url: &str) -> Pool {
+    let manager = ConnectionManager::<MysqlConnection>::new(database_url);
+    r2d2::Pool::new(manager).expect("error creating database pool")
 }
 
 ///Connection Guard

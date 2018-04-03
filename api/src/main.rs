@@ -40,10 +40,10 @@ fn remove_user(connection: DbConn, email: String, token: String) -> String {
     //let connection = establish_connection();
 
     match db::delete_user(&connection, &email, &token) {
-        Ok(n) if n <= 0                => format!("Not removed"),
-        Ok(_)                          => format!("Bye"),
-        Err(ref s) if s == "Not found" => format!("Not found"),
-        Err(ref s) if s == "Forbidden" => format!("Forbidden"),
+        Ok(n) if n == 0                => "Not removed".to_string(),
+        Ok(_)                          => "Bye".to_string(),
+        Err(ref s) if s == "Not found" => "Not found".to_string(),
+        Err(ref s) if s == "Forbidden" => "Forbidden".to_string(),
         Err(s)                         => format!("{}", s)
     }
 }

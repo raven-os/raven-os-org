@@ -8,6 +8,7 @@ matrix:
         before_script:
           - rustup component add rustfmt-preview
           - cargo install clippy --version "$CLIPPY_VERSION" || echo "Clippy already installed"
+          - cd api
 
         script:
           - cargo fmt --all -- --write-mode=diff

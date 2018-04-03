@@ -71,6 +71,14 @@ fn get_users(connection: DbConn) -> Result<Custom<Json<Vec<User>>>, Custom<Strin
     }
 }
 
+#[get("/email/find/<email>", format = "application/json")]
+fn get_user(connection: DbConn, email: String) -> Result<Custom<Json<User>>, Custom<String>> {
+    match db::get_user(&connection, &email) {
+        Ok(user) => Ok(Custom(Status::Ok, Json(user))),
+        Err(s) => Err(Custom(Status::NotFound, s)),
+    }
+}
+
 fn main() {
     dotenv::dotenv().ok();
 
@@ -84,7 +92,7 @@ fn main() {
 
     rocket::ignite()
         .manage(init_pool(&database_url))
-        .mount("/", routes![add_user, remove_user, get_users])
+        .mount("/", routes![add_user, remove_user, get_users, get_user])
         .launch();
 }
 

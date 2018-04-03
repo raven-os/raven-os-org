@@ -61,3 +61,12 @@ pub fn get_all_users(conn: &MysqlConnection) -> Result<Vec<User>, String> {
         Err(s) => Err(s.to_string()),
     }
 }
+
+pub fn get_user(conn: &MysqlConnection, user_email: &str) -> Result<User, String> {
+    use self::schema::users::dsl::*;
+
+    match users.filter(email.eq(user_email)).first::<User>(conn) {
+        Err(_) => Err("Not found".to_string()),
+        Ok(user) => Ok(user),
+    }
+}

@@ -52,8 +52,9 @@ $ diesel migration generate <name>
 $ cargo run
 ```
 
-#### Endpoints
+### Documentation
 
-**GET** `localhost:8000/email/<email>`
-
-**GET** `localhost:8000/email/delete/<email>/<token>`
+```
+$ apidoc -i src -o docs -f ".*\\.rs$"
+$ firefox docs/index.html
+```

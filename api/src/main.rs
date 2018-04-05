@@ -1,6 +1,11 @@
+//! This is the API for Raven Website
+//!
+//! Is contains for now only the newsletter endpoints
+
 #![feature(plugin)]
 #![plugin(rocket_codegen)]
 #![cfg_attr(feature = "cargo-clippy", allow(needless_pass_by_value))]
+#![cfg_attr(feature = "cargo-clippy", allow(doc_markdown))]
 
 extern crate dotenv;
 extern crate rocket;
@@ -58,7 +63,30 @@ fn main() {
 
 /* ==================== ROUTE HANDLER ==================== */
 
-// Add an user to database
+/**
+ * @api {post} /emails/:email Add email
+ * @apiName AddEmail
+ * @apiGroup emails
+ * @apiVersion 1.0.0
+ *
+ * @apiParam {String} email User's email.
+ *
+ * @apiSuccess {Integer} id     User's id.
+ * @apiSuccess {String}  email  User's email.
+ * @apiSuccess {String}  token  User's token.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": 42,
+ *       "email": "raven@os.com",
+ *       "token": "azerty4242"
+ *     }
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     "Already registered"
+ */
 #[post("/<email>")]
 fn add_user(connection: DbConn, email: String) -> Result<Custom<Json<User>>, Custom<String>> {
     match db::create_user(&connection, &email) {
@@ -67,7 +95,31 @@ fn add_user(connection: DbConn, email: String) -> Result<Custom<Json<User>>, Cus
     }
 }
 
-// Delete an user from database
+/**
+ * @api {delete} /emails/:email/:token Delete email
+ * @apiName DeleteEmail
+ * @apiGroup emails
+ * @apiVersion 1.0.0
+ *
+ * @apiParam {String} email User's email.
+ * @apiParam {String} token User's token.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     "success"
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Bad Request
+ *     "Not removed"
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     "Not found"
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     "Forbidden"
+ */
 #[delete("/<email>/<token>")]
 fn remove_user(connection: DbConn, email: String, token: String) -> Custom<String> {
     match db::delete_user(&connection, &email, &token) {
@@ -79,6 +131,32 @@ fn remove_user(connection: DbConn, email: String, token: String) -> Custom<Strin
     }
 }
 
+/**
+ * @api {get} /emails Show all users
+ * @apiName GetEmails
+ * @apiGroup emails
+ * @apiVersion 1.0.0
+ *
+ * @apiSuccess {Object[]} users        List of user.
+ * @apiSuccess {Integer}  users.id     User's id.
+ * @apiSuccess {String}   users.email  User's email.
+ * @apiSuccess {String}   users.token  User's token.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     [
+ *       {
+ *         "id": 42,
+ *         "email": "raven@os.com",
+ *         "token": "azerty4242"
+ *       },
+ *       {...}
+ *     ]
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Internal Server Error
+ *     "error"
+ */
 #[get("/")]
 fn get_users(connection: DbConn) -> Result<Custom<Json<Vec<User>>>, Custom<String>> {
     match db::get_all_users(&connection) {
@@ -87,6 +165,30 @@ fn get_users(connection: DbConn) -> Result<Custom<Json<Vec<User>>>, Custom<Strin
     }
 }
 
+/**
+ * @api {get} /emails/:email Show user
+ * @apiName GetUser
+ * @apiGroup emails
+ * @apiVersion 1.0.0
+ *
+ * @apiParam {String} email User's email.
+ *
+ * @apiSuccess {Integer} id     User's id.
+ * @apiSuccess {String}  email  User's email.
+ * @apiSuccess {String}  token  User's token.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "id": 42,
+ *       "email": "raven@os.com",
+ *       "token": "azerty4242"
+ *     }
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     "Not found"
+ */
 #[get("/<email>")]
 fn get_user(connection: DbConn, email: String) -> Result<Custom<Json<User>>, Custom<String>> {
     match db::get_user(&connection, &email) {
@@ -106,7 +208,7 @@ fn init_pool(database_url: &str) -> Pool {
 ///Connection Guard
 use std::ops::Deref;
 
-// Connection request guard type: a wrapper around an r2d2 pooled connection.
+/// Connection request guard type: a wrapper around an r2d2 pooled connection.
 pub struct DbConn(pub r2d2::PooledConnection<ConnectionManager<MysqlConnection>>);
 
 /// Attempts to retrieve a single connection from the managed database pool. If

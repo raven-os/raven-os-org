@@ -11,3 +11,5 @@ Cargo.lock
 
 # Tool to manage our environment variables for us
 .env
+
+docs

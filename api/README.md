@@ -20,10 +20,12 @@ Install `diesel_cli` a tool that handle database operations
 
 ### Installing
 
-Set the **DATABASE_URL** environment variable
+Set the **DATABASE_URL** environment variable and the **ADMIN_TOKEN**
 
 ```
 $ echo DATABASE_URL=mysql://username:password@localhost/db_name > .env
+$ echo ADMIN_TOKEN=secret_token_for_admin_access >> .env
+
 ```
 
 Setup the database

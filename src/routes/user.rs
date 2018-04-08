@@ -8,8 +8,10 @@ use rocket::response::status::Custom;
 use rocket_contrib::Json;
 
 /// Returns all user routes
+///
+/// TODO: temporary disabled get routes not to collide with front
 pub fn get_routes() -> Vec<Route> {
-    routes![create, remove, get, get_all]
+    routes![create, remove]
 }
 
 /**

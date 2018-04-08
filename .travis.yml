@@ -2,7 +2,6 @@ language: rust
 cache: cargo
 rust: nightly
 before_script:
-  - cd api
   - rustup component add rustfmt-preview
   - rustup update
   - cargo update

@@ -39,6 +39,7 @@ pub mod routes;
 
 use config::{init_pool, AdminToken, MyConfig};
 
+use routes::front::get_routes as front_routes;
 use routes::user::get_routes as user_routes;
 
 fn main() {
@@ -52,6 +53,7 @@ fn main() {
     rocket::ignite()
         .manage(config)
         .mount("/emails", user_routes())
+        .mount("/", front_routes())
         .launch();
 }
 

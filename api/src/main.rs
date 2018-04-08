@@ -29,6 +29,9 @@ extern crate serde;
 // Used for json
 extern crate rocket_contrib;
 
+// Used for random
+extern crate rand;
+
 pub mod config;
 pub mod db;
 pub mod routes;

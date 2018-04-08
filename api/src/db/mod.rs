@@ -10,6 +10,7 @@ use self::models::{NewUser, User};
 use diesel::delete;
 use diesel::insert_into;
 use diesel::prelude::*;
+use rand::{self, Rng};
 use std::env;
 
 /// Returns a database connection, used for debug
@@ -21,13 +22,21 @@ pub fn establish_connection() -> MysqlConnection {
         .expect(&format!("Error connecting to {}", database_url))
 }
 
+/// Return a random token
+fn generate_token() -> String {
+    let mut rng = rand::thread_rng();
+    let letter: char = rng.gen_range(b'A', b'Z') as char;
+    let number: u32 = rng.gen_range(0, 999_999);
+    format!("{}{:06}", letter, number)
+}
+
 /// Creates an user and returns it or a string explaining the error
 pub fn create_user(conn: &MysqlConnection, user_email: &str) -> Result<User, String> {
     use self::schema::users;
 
     let new_user = NewUser {
         email: user_email,
-        token: "test",
+        token: &generate_token(),
     };
 
     let row = insert_into(users::table).values(&new_user).execute(conn);

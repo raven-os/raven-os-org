@@ -48,11 +48,35 @@ Generate a migration
 $ diesel migration generate <name>
 ```
 
+### Configuration
+
+Copy the `Rocket.toml.example` file and modify it as you wish
+
+```
+$ cp Rocket.toml.example Rocket.toml`
+```
+
+For the `secret_key` you can get a 256-bit base64 encoded string using openssl.
+
+```
+$ openssl rand -base64 32
+```
+
 ### Run
 
 ```
 $ cargo run
 ```
+
+Rocket run with the development configuration by default.
+If you want to change it, use the `ROCKET_ENV` environment variable.
+
+```
+$ ROCKET_ENV=stage cargo run
+$ ROCKET_ENV=prod cargo run
+```
+
+You'll likely need `sudo` if you listen on port `80`.
 
 ### Documentation
 

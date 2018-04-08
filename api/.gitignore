@@ -13,3 +13,4 @@ Cargo.lock
 .env
 
 docs
+Rocket.toml

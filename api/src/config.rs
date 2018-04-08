@@ -1,7 +1,7 @@
 //! All the configurations for the application
 //!
 //! Contains types definitions and traits implementations
-//! for managed states used with `.manage() on a rocket app`
+//! for managed states used with `.manage()` on a rocket app`
 
 use diesel::mysql::MysqlConnection;
 use r2d2;

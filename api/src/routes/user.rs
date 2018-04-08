@@ -1,11 +1,11 @@
 //! Contains all user routes
 
+use rocket::http::Status;
+use rocket_contrib::Json;
+use rocket::response::status::Custom;
+use rocket::Route;
 use config::{AdminToken, DbConn};
 use db::{self, models::User};
-use rocket::Route;
-use rocket::http::Status;
-use rocket::response::status::Custom;
-use rocket_contrib::Json;
 
 /// Returns all user routes
 pub fn get_routes() -> Vec<Route> {

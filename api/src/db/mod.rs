@@ -1,3 +1,7 @@
+//! Database business layer
+//!
+//! Contains actions to interact with a database using `Diesel`
+
 #[macro_use]
 pub mod models;
 mod schema;
@@ -8,7 +12,7 @@ use diesel::insert_into;
 use diesel::prelude::*;
 use std::env;
 
-// Connect to database
+/// Returns a database connection, used for debug
 #[allow(dead_code)]
 pub fn establish_connection() -> MysqlConnection {
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
@@ -17,6 +21,7 @@ pub fn establish_connection() -> MysqlConnection {
         .expect(&format!("Error connecting to {}", database_url))
 }
 
+/// Creates an user and returns it or a string explaining the error
 pub fn create_user(conn: &MysqlConnection, user_email: &str) -> Result<User, String> {
     use self::schema::users;
 
@@ -32,6 +37,7 @@ pub fn create_user(conn: &MysqlConnection, user_email: &str) -> Result<User, Str
     }
 }
 
+/// Removes an user
 pub fn delete_user(
     conn: &MysqlConnection,
     user_email: &str,
@@ -53,6 +59,7 @@ pub fn delete_user(
     }
 }
 
+/// Retrieves all users
 pub fn get_all_users(conn: &MysqlConnection) -> Result<Vec<User>, String> {
     use self::schema::users::dsl::*;
 
@@ -62,6 +69,7 @@ pub fn get_all_users(conn: &MysqlConnection) -> Result<Vec<User>, String> {
     }
 }
 
+/// Retrieves one user
 pub fn get_user(conn: &MysqlConnection, user_email: &str) -> Result<User, String> {
     use self::schema::users::dsl::*;
 

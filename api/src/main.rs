@@ -6,6 +6,7 @@
 #![plugin(rocket_codegen)]
 #![cfg_attr(feature = "cargo-clippy", allow(needless_pass_by_value))]
 #![cfg_attr(feature = "cargo-clippy", allow(doc_markdown))]
+#![cfg_attr(feature = "cargo-clippy", allow(print_literal))]
 
 // Used to load environment from .env file
 extern crate dotenv;

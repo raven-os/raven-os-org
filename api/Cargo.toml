@@ -1,7 +1,7 @@
 [package]
 name = "website_api"
 version = "0.1.0"
-authors = ["Melvin PERSONNIER <melvin.personnier@gmail.com>"]
+authors = ["Melvin PERSONNIER <melvin.personnier@gmail.com>", "Mickael BOURGOIS <mickael.bourgois@epitech.eu"]
 
 [dependencies]
 diesel = { version = "1.0.0", features = ["mysql"] }

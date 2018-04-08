@@ -11,16 +11,6 @@ use diesel::delete;
 use diesel::insert_into;
 use diesel::prelude::*;
 use rand::{self, Rng};
-use std::env;
-
-/// Returns a database connection, used for debug
-#[allow(dead_code)]
-pub fn establish_connection() -> MysqlConnection {
-    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
-
-    MysqlConnection::establish(&database_url)
-        .expect(&format!("Error connecting to {}", database_url))
-}
 
 /// Return a random token
 fn generate_token() -> String {
@@ -57,10 +47,10 @@ pub fn delete_user(
     match users.filter(email.eq(user_email)).first::<User>(conn) {
         Err(_) => Err("Not found".to_string()),
         Ok(u) => {
-            if u.token != user_token {
+            if u.token() != user_token {
                 return Err("Forbidden".to_string());
             }
-            match delete(users.filter(email.eq(u.email))).execute(conn) {
+            match delete(users.filter(email.eq(u.email()))).execute(conn) {
                 Ok(deleted_row) => Ok(deleted_row),
                 Err(s) => Err(s.to_string()),
             }

@@ -19,7 +19,7 @@ type Pool = r2d2::Pool<ConnectionManager<MysqlConnection>>;
 pub struct DbConn(pub r2d2::PooledConnection<ConnectionManager<MysqlConnection>>);
 
 /// A string representing admin token to access admin only endpoints
-#[derive(Clone, PartialEq)]
+#[derive(Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug, Default)]
 pub struct AdminToken(pub String);
 
 /// Contains all the application configuration objects
@@ -33,7 +33,7 @@ pub struct MyConfig {
 /// Initializes a database pool.
 pub fn init_pool(database_url: &str) -> Pool {
     let manager = ConnectionManager::<MysqlConnection>::new(database_url);
-    r2d2::Pool::new(manager).expect("error creating database pool")
+    r2d2::Pool::new(manager).expect("error: can't create database pool")
 }
 
 /// Attempts to retrieve a single connection from the managed database pool. If

@@ -83,7 +83,7 @@ fn remove(connection: DbConn, email: String, token: String) -> Custom<String> {
 /**
  * @api {get} /emails/:admin_token Show all users
  * @apiDescription Show user's information only for admin.
- * @apiName get
+ * @apiName get_all
  * @apiGroup emails
  * @apiVersion 1.0.0
  *
@@ -114,24 +114,25 @@ fn remove(connection: DbConn, email: String, token: String) -> Custom<String> {
  *     "Forbidden"
  */
 #[get("/<admin_token>")]
-fn get(
+fn get_all(
     connection: DbConn,
     server_token: AdminToken,
     admin_token: AdminToken,
 ) -> Result<Custom<Json<Vec<User>>>, Custom<String>> {
     if server_token != admin_token {
-        return Err(Custom(Status::Forbidden, "Admin only".to_string()));
-    }
-    match db::get_all_users(&connection) {
-        Ok(users) => Ok(Custom(Status::Ok, Json(users))),
-        Err(s) => Err(Custom(Status::InternalServerError, format!("error {}", s))),
+        Err(Custom(Status::Forbidden, "Admin only".to_string()))
+    } else {
+        match db::get_all_users(&connection) {
+            Ok(users) => Ok(Custom(Status::Ok, Json(users))),
+            Err(s) => Err(Custom(Status::InternalServerError, format!("error: {}", s))),
+        }
     }
 }
 
 /**
  * @api {get} /emails/:email/:admin_token Show user
  * @apiDescription Show user's information only for admin.
- * @apiName get_all
+ * @apiName get
  * @apiGroup emails
  * @apiVersion 1.0.0
  *
@@ -159,17 +160,18 @@ fn get(
  *     "Admin only"
  */
 #[get("/<email>/<admin_token>")]
-fn get_all(
+fn get(
     connection: DbConn,
     server_token: AdminToken,
     email: String,
     admin_token: AdminToken,
 ) -> Result<Custom<Json<User>>, Custom<String>> {
     if server_token != admin_token {
-        return Err(Custom(Status::Forbidden, "Admin only".to_string()));
-    }
-    match db::get_user(&connection, &email) {
-        Ok(user) => Ok(Custom(Status::Ok, Json(user))),
-        Err(s) => Err(Custom(Status::NotFound, s)),
+        Err(Custom(Status::Forbidden, "Admin only".to_string()))
+    } else {
+        match db::get_user(&connection, &email) {
+            Ok(user) => Ok(Custom(Status::Ok, Json(user))),
+            Err(s) => Err(Custom(Status::NotFound, s)),
+        }
     }
 }

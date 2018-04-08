@@ -6,12 +6,10 @@
 use diesel::mysql::MysqlConnection;
 use r2d2;
 use r2d2_diesel::ConnectionManager;
-
 use rocket::http::RawStr;
 use rocket::http::Status;
 use rocket::request::{self, FromParam, FromRequest};
 use rocket::{Outcome, Request, State};
-
 use std::ops::Deref;
 
 /// Encapsulate a r2d2 Mysql connection pool.
@@ -25,7 +23,7 @@ pub struct DbConn(pub r2d2::PooledConnection<ConnectionManager<MysqlConnection>>
 pub struct AdminToken(pub String);
 
 /// Contains all the application configuration objects
-pub struct Config {
+pub struct MyConfig {
     /// The database pool
     pub pool: Pool,
     /// The admin token
@@ -45,7 +43,7 @@ impl<'a, 'r> FromRequest<'a, 'r> for DbConn {
     type Error = ();
 
     fn from_request(request: &'a Request<'r>) -> request::Outcome<DbConn, ()> {
-        let config = request.guard::<State<Config>>()?;
+        let config = request.guard::<State<MyConfig>>()?;
         match config.pool.get() {
             Ok(conn) => Outcome::Success(DbConn(conn)),
             Err(_) => Outcome::Failure((Status::ServiceUnavailable, ())),
@@ -68,7 +66,7 @@ impl<'a, 'r> FromRequest<'a, 'r> for AdminToken {
 
     fn from_request(request: &'a Request<'r>) -> request::Outcome<AdminToken, ()> {
         request
-            .guard::<State<Config>>()
+            .guard::<State<MyConfig>>()
             .map(|config| config.admin_token.clone())
     }
 }

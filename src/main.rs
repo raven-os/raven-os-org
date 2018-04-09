@@ -33,12 +33,14 @@ extern crate rocket_contrib;
 // Used for random
 extern crate rand;
 
+pub mod catchers;
 pub mod config;
 pub mod db;
 pub mod routes;
 
 use config::{init_pool, AdminToken, MyConfig};
 
+use catchers::get_catchers;
 use routes::front::get_routes as front_routes;
 use routes::user::get_routes as user_routes;
 
@@ -54,6 +56,7 @@ fn main() {
         .manage(config)
         .mount("/emails", user_routes())
         .mount("/", front_routes())
+        .catch(get_catchers())
         .launch();
 }
 

@@ -1,10 +1,10 @@
 //! Contains error catcher
 
 use rocket;
-use rocket::Catcher;
 use rocket::request::Request;
-use rocket::response::NamedFile;
-use std::path::Path;
+use rocket::Catcher;
+use rocket_contrib::Template;
+use std::collections::HashMap;
 
 /// Returns all error catchers
 pub fn get_catchers() -> Vec<Catcher> {
@@ -12,7 +12,7 @@ pub fn get_catchers() -> Vec<Catcher> {
 }
 
 #[error(404)]
-fn not_found(_req: &Request) -> Option<NamedFile> {
+fn not_found(_req: &Request) -> Template {
     //println!("{:?}", _req);
-    NamedFile::open(Path::new("front/404.html")).ok()
+    Template::render("404", HashMap::<&str, &str>::new())
 }

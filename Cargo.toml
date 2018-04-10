@@ -17,4 +17,4 @@ rand="0.4"
 [dependencies.rocket_contrib]
 version = "*"
 default-features = false
-features = ["json"]
+features = ["json", "handlebars_templates"]

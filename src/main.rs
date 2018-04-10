@@ -44,6 +44,8 @@ use catchers::get_catchers;
 use routes::front::get_routes as front_routes;
 use routes::user::get_routes as user_routes;
 
+use rocket_contrib::Template;
+
 fn main() {
     dotenv::dotenv().ok();
 
@@ -57,6 +59,7 @@ fn main() {
         .mount("/emails", user_routes())
         .mount("/", front_routes())
         .catch(get_catchers())
+        .attach(Template::fairing())
         .launch();
 }
 

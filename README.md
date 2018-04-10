@@ -1,6 +1,7 @@
-# Website's API
+# Website for Raven-OS
 
-This is the API for Raven Website. It handles things like newsletter
+This is the website of raven-os, used to communicate with customers.
+It's back office uses rocket.
 
 ## Getting Started
 

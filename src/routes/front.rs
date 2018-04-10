@@ -1,7 +1,9 @@
 //! Contains all routes to serve front-end files
 
-use rocket::Route;
 use rocket::response::{NamedFile, Redirect};
+use rocket::Route;
+use rocket_contrib::Template;
+use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 
 /// Returns all front-end routes
@@ -28,7 +30,7 @@ pub fn get_routes() -> Vec<Route> {
  *     HTTP/1.1 404 Not found
  */
 #[get("/<target..>")]
-fn get(mut target: PathBuf) -> Result<Option<NamedFile>, Redirect> {
+fn get(mut target: PathBuf) -> Result<Result<Option<NamedFile>, Template>, Redirect> {
     let path = Path::new("front").join(target.clone());
     if path.is_dir() {
         target.push("index.html");
@@ -38,7 +40,13 @@ fn get(mut target: PathBuf) -> Result<Option<NamedFile>, Redirect> {
             Err(Redirect::to("/"))
         }
     } else {
-        Ok(NamedFile::open(path).ok())
+        let path_template = path.clone().with_extension("html.hbs");
+        if path_template.exists() {
+            if let Some(name) = extract_filename(target.clone().with_extension("html.hbs")) {
+                return Ok(Err(template(name.to_string())));
+            }
+        }
+        Ok(Ok(NamedFile::open(path).ok()))
     }
 }
 
@@ -56,6 +64,19 @@ fn get(mut target: PathBuf) -> Result<Option<NamedFile>, Redirect> {
  *     Content-type text/html
  */
 #[get("/")]
-fn index() -> Option<NamedFile> {
-    NamedFile::open(Path::new("front/index.html")).ok()
+fn index() -> Template {
+    template("index".to_string())
+}
+
+/// Helper
+fn template(name: String) -> Template {
+    Template::render(name, HashMap::<&str, &str>::new())
+}
+
+/// Return filename without any extension
+/// TODO: check unwrap
+fn extract_filename(path: PathBuf) -> Option<String> {
+    let s: String = path.to_str().unwrap().to_string();
+    let (a, _) = s.split_at(s.find('.').unwrap_or(s.len()));
+    Some(a.to_string())
 }

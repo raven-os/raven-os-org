@@ -2,9 +2,9 @@
 
 use config::{AdminToken, DbConn};
 use db::{self, models::User};
-use rocket::Route;
 use rocket::http::Status;
 use rocket::response::status::Custom;
+use rocket::Route;
 use rocket_contrib::Json;
 
 /// Returns all user routes

@@ -13,6 +13,5 @@ pub fn get_catchers() -> Vec<Catcher> {
 
 #[error(404)]
 fn not_found(_req: &Request) -> Template {
-    //println!("{:?}", _req);
     Template::render("404", HashMap::<&str, &str>::new())
 }

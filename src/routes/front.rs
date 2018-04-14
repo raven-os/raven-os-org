@@ -1,9 +1,11 @@
 //! Contains all routes to serve front-end files
 
+use config::Whitelist;
 use rocket::response::{NamedFile, Redirect};
 use rocket::Route;
 use rocket_contrib::Template;
 use std::collections::HashMap;
+use std::ffi::OsStr;
 use std::path::{Path, PathBuf};
 
 /// Returns all front-end routes
@@ -30,7 +32,16 @@ pub fn get_routes() -> Vec<Route> {
  *     HTTP/1.1 404 Not found
  */
 #[get("/<target..>")]
-fn get(mut target: PathBuf) -> Result<Result<Option<NamedFile>, Template>, Redirect> {
+fn get(
+    mut target: PathBuf,
+    whitelist: Whitelist,
+) -> Result<Result<Option<NamedFile>, Template>, Redirect> {
+    match target.extension().and_then(OsStr::to_str) {
+        Some(ref extension) if !whitelist.contains(&extension.to_string()) => {
+            return Ok(Err(template("404".to_string())));
+        }
+        _ => (),
+    }
     let path = Path::new("front").join(target.clone());
     if path.is_dir() {
         target.push("index.html");

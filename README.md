@@ -21,11 +21,14 @@ Install `diesel_cli` a tool that handle database operations
 
 ### Installing
 
-Set the **DATABASE_URL** environment variable and the **ADMIN_TOKEN**
+Set the **DATABASE_URL** environment variable, the **ADMIN_TOKEN** and
+the file extension whitelist
 
 ```
 $ echo DATABASE_URL=mysql://username:password@localhost/db_name > .env
 $ echo ADMIN_TOKEN=secret_token_for_admin_access >> .env
+$ echo WHITELIST=html/css/js/eot/ttf/woff/woff2/svg/jpeg/jpg/png/gif/bmp/ico/mp3/mp4/avi/mkv/wmv >> .env
+
 
 ```
 
@@ -84,4 +87,25 @@ You'll likely need `sudo` if you listen on port `80`.
 ```
 $ apidoc -i src -o docs -f ".*\\.rs$"
 $ firefox docs/index.html
+```
+
+### Template
+
+Template root folder is `front/`
+Every path in `href` should be absolute if you are in a subfolder.
+You can include template with `{{> template_name}}`
+Example for *front/subfolder/index.html.hbs*:
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="/img/RavenIco.ico" rel="icon">
+</head>
+<body>
+    {{> header}}
+    Hello
+    {{> footer}}
+</body>
+</html>
+
 ```

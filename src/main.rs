@@ -38,7 +38,7 @@ pub mod config;
 pub mod db;
 pub mod routes;
 
-use config::{init_pool, AdminToken, MyConfig};
+use config::{extension_whitelist, init_pool, AdminToken, MyConfig};
 
 use catchers::get_catchers;
 use routes::front::get_routes as front_routes;
@@ -52,6 +52,7 @@ fn main() {
     let config = MyConfig {
         pool: init_pool(&get_env("DATABASE_URL")),
         admin_token: AdminToken(get_env("ADMIN_TOKEN")),
+        whitelist: extension_whitelist(&get_env("WHITELIST")),
     };
 
     rocket::ignite()

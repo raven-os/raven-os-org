@@ -660,46 +660,93 @@ section:hover .section-header .section-title {
     padding: 80px 0 60px 0;
 }
 
-#team .member {
-    text-align: center;
-    margin-bottom: 20px;
+.row-team {
+  /*border:1px solid red*/;
+  margin:30px 0 30px 0;
 }
 
-#team .member .pic {
+.row-team .content-row-team {
+    margin:0 auto 0 auto;
+    display:inline-block;
+}
+
+#team .member, #team .member2 {
+    text-align: center;
+    display:inline-block;
+}
+
+#team .member {
+  width:16%;
+}
+
+#team .member2 {
+  width:19%;
+}
+
+@media screen and (max-width:990px) {
+    #team .member {
+      width:32%;
+    }
+
+    .too-long {
+      padding:0;
+      width:200px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    #team .member {
+      width:30%;
+    }
+
+    .too-long {
+      width:100px;
+    }
+}
+
+/*@media screen and (max-width:480px) {
+    #team .member {
+      width:32%;
+    }
+
+}*/
+
+#team .member .pic, #team .member2 .pic {
     margin-bottom: 15px;
     overflow: hidden;
 }
 
-#team .member .pic img {
+#team .member .pic img, #team .member2 .pic img {
     max-width: 100%;
+    max-height:130px;
 }
 
-#team .member h4 {
+#team .member h4, #team .member2 h4 {
     font-weight: 700;
     margin-bottom: 2px;
-    font-size: 18px;
+    font-size: 15px;
     color: var(--primary-dark);
 }
 
-#team .member span {
+#team .member span, #team .member2 span {
     font-style: italic;
     display: block;
     font-size: 13px;
 }
 
-#team .member .social {
+#team .member .social, #team .member2 .social {
     margin-top: 15px;
 }
 
-#team .member .social a {
+#team .member .social a, #team .member2 .social a {
     color: var(--primary-dark);
 }
 
-#team .member .social a:hover {
+#team .member .social a:hover, #team .member2 .social a:hover {
     color: var(--accent);
 }
 
-#team .member .social i {
+#team .member .social i, #team .member2 .social i {
     font-size: 18px;
     margin: 0 2px;
 }

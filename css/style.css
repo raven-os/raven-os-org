@@ -673,6 +673,7 @@ section:hover .section-header .section-title {
 #team .member, #team .member2 {
     text-align: center;
     display:inline-block;
+    margin-bottom: 10px;
 }
 
 #team .member {
@@ -683,25 +684,40 @@ section:hover .section-header .section-title {
   width:19%;
 }
 
+@media screen and (max-width:1200px) and (min-width:990px) {
+
+  .isExcept {
+    position:relative;
+    top: 17Px;
+  }
+
+}
+
 @media screen and (max-width:990px) {
-    #team .member {
+    #team .member, #team .member2 {
       width:32%;
     }
 
-    .too-long {
+    /*.too-long {
       padding:0;
       width:200px;
-    }
+    }*/
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:768px and min-width: 575px) {
     #team .member {
       width:30%;
     }
 
-    .too-long {
+  /*  .isExcept {
+      position:relative;
+      top: 17Px;
+      border:1Px solid red;
+    }*/
+
+    /*.too-long {
       width:100px;
-    }
+    }*/
 }
 
 /*@media screen and (max-width:480px) {

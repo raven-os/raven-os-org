@@ -683,9 +683,14 @@ section:hover .section-header .section-title {
   width:19%;
 }
 
+#Dorian, #Vincent {
+  position:relative;
+  top:17px;
+}
+
 @media screen and (max-width:1200px) and (min-width:990px) {
 
-  .isExcept {
+  #Flora {
     position:relative;
     top: 17Px;
   }
@@ -696,11 +701,6 @@ section:hover .section-header .section-title {
     #team .member-top, #team .member-bottom {
       width:32%;
     }
-
-    /*.too-long {
-      padding:0;
-      width:200px;
-    }*/
 }
 
 @media screen and (max-width:768px and min-width: 575px) {
@@ -708,6 +708,20 @@ section:hover .section-header .section-title {
       width:30%;
     }
 
+}
+
+@media screen and (max-width:420px) and (min-width:325px) {
+  #Matteo {
+    position:relative;
+    top:-17px;
+  }
+}
+
+@media screen and (max-width:325px) {
+  #Benjamin {
+    position:relative;
+    top:17px;
+  }
 }
 
 #team .member-top .pic, #team .member-bottom .pic {
@@ -724,6 +738,8 @@ section:hover .section-header .section-title {
     font-weight: 700;
     margin-bottom: 2px;
     font-size: 15px;
+    max-height:17px;
+    overflow: hidden;
     color: var(--primary-dark);
 }
 

@@ -1,5 +1,5 @@
 [package]
-name = "website_api"
+name = "website"
 version = "0.1.0"
 authors = ["Melvin PERSONNIER <melvin.personnier@gmail.com>", "Mickael BOURGOIS <mickael.bourgois@epitech.eu"]
 
@@ -17,4 +17,4 @@ rand="0.4"
 [dependencies.rocket_contrib]
 version = "*"
 default-features = false
-features = ["json"]
+features = ["json", "handlebars_templates"]

@@ -37,29 +37,7 @@
     <!--==========================
     Header
     ============================-->
-    <header id="header">
-        <div class="container">
-            <div id="logo" class="pull-left">
-                <a href="#hero"><img src="img/raven_title.png" alt="" title="" /></a>
-            </div>
-            <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li class="menu-active"><a href="#hero">Home</a></li>
-                    <li class="menu-has-children">
-                        <a href="#first-point">About</a>
-                        <ul>
-                            <li><a href="#first-point">Adaptive</a></li>
-                            <li><a href="#second-point">Customizable</a></li>
-                            <li><a href="#third-point">Evolutive</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li id="li-news"><a href="#news">Newsletter</a></li>
-                </ul>
-            </nav><!-- #nav-menu-container -->
-        </div>
-    </header><!-- #header -->
+    {{> header}}
     <!--==========================
       Hero Section
     ============================-->
@@ -181,68 +159,72 @@
                     <h3 class="section-title">Team</h3>
                     <p class="section-description">A little flock of ravens!</p>
                 </div>
-                <div class="row">
-                    <div class="col-lg-1 col-md-0 col-xs-0"></div>
-                    <div class="col-lg-2 col-md-4 col-xs-6">
-                        <div class="member">
-                            <div class="pic"><img src="img/team/benjamin.png" alt=""></div>
-                            <h4>Benjamin Grange</h4>
-                            <span>Chief Executive Officer</span>
-                            <div class="social">
-                                <a target="_blank" href="https://github.com/Arignir"><i class="fab fa-github"></i></a>
-                            </div>
+                <div class="row row-team">
+                  <div class="col-sm-11 content-row-team">
+                    <div class="member-top">
+                      <div id="Benjamin">
+                        <div class="pic"><img src="img/team/benjamin.png" alt="Benjamin Grange, Chief Executive Officer, developer Nest on Raven-Os"></div>
+                        <h4>Benjamin Grange</h4>
+                        <span>Chief Executive Officer</span>
+                      </div>
+                        <div class="social">
+                            <a target="_blank" href="https://github.com/Arignir"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-4 col-xs-6">
-                        <div class="member">
-                            <div class="pic"><img src="img/team/jakob.png" alt=""></div>
-                            <h4>Jakob Kellendonk</h4>
-                            <span>Chief Technic Officer</span>
-                            <div class="social">
-                                <a target="_blank" href="https://github.com/Gaspard--"><i class="fab fa-github"></i></a>
-                                <!--<a href=""><i class="fa fa-linkedin"></i></a>-->
-                            </div>
+                    <div class="member-top">
+                      <div id="Flora">
+                      <div class="pic"><img src="img/team/flora.png" alt="Flora Huot, UX Designer and developer on Raven-Os"></div>
+                      <h4>Flora Huot</h4>
+                      <span class="too-long">UX Designer / Developer</span>
+                    </div>
+                      <div class="social">
+                        <a target="_blank" href="https://github.com/Keeniie"><i class="fab fa-github"></i></a>
+                        <a target="_blank" href="https://www.linkedin.com/in/florahuot/"><i class="fab fa-linkedin"></i></a>
+                      </div>
+                    </div>
+                    <div class="member-top">
+                        <div class="pic"><img src="img/team/jakob.png" alt="Jakob Kellendonk, Chief Technic Officer, developer Feathers on Raven-Os"></div>
+                        <h4>Jakob Kellendonk</h4>
+                        <span>Chief Technic Officer</span>
+                        <div class="social">
+                            <a target="_blank" href="https://github.com/Gaspard--"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-4 col-xs-6">
-                        <div class="member">
-                            <div class="pic"><img src="img/team/flora.png" alt=""></div>
-                            <h4>Flora Huot</h4>
-                            <span>UX Designer<br />Developer</span>
-                            <div class="social">
-                                <a target="_blank" href="https://github.com/Keeniie"><i class="fab fa-github"></i></a>
-                                <a target="_blank" href="https://www.linkedin.com/in/florahuot/"><i class="fab fa-linkedin"></i></a>
-                            </div>
+                    <div class="member-top">
+                        <div class="pic"><img src="img/team/jean.png" alt="Jean Plancher, developer Feathers on Raven-Os"></div>
+                        <h4>Jean Plancher</h4>
+                        <span>Feathers Developer</span>
+                        <div class="social">
+                            <a target="_blank" href="https://github.com/plean"><i class="fab fa-github"></i></a>
+                            <a target="_blank" href="https://www.linkedin.com/in/jean-plancher-a7a81813a/"><i class="fab fa-linkedin"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-4 col-xs-6">
-                        <div class="member">
-                            <div class="pic"><img src="img/team/jean.png" alt=""></div>
-                            <h4>Jean Plancher</h4>
-                            <span>Feathers Developer</span>
-                            <div class="social">
-                                <a target="_blank" href="https://github.com/plean"><i class="fab fa-github"></i></a>
-                                <a target="_blank" href="https://www.linkedin.com/in/jean-plancher-a7a81813a/"><i class="fab fa-linkedin"></i></a>
-                            </div>
+                    <div class="member-top">
+                        <div class="pic"><img class="img-responsive" src="img/team/david.png" alt="David Zeng, developer Feathers on Raven-Os"></div>
+                        <h4>David Zeng</h4>
+                        <span>Feathers Developer</span>
+                        <div class="social">
+                            <a target="_blank" href="https://github.com/riamon-v"><i class="fab fa-github"></i></a>
+                            <a target="_blank" href="https://www.linkedin.com/in/vincent-riamon-27626a127/"><i class="fab fa-linkedin"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-4 col-xs-6">
-                        <div class="member">
-                            <div class="pic"><img class="img-responsive" src="img/team/vincent.png" alt=""></div>
-                            <h4>Vincent Riamon</h4>
-                            <span>Feathers Developer</span>
-                            <div class="social">
-                                <a target="_blank" href="https://github.com/riamon-v"><i class="fab fa-github"></i></a>
-                                <a target="_blank" href="https://www.linkedin.com/in/vincent-riamon-27626a127/"><i class="fab fa-linkedin"></i></a>
-                            </div>
+                    <div class="member-top">
+                      <div id="Vincent">
+                        <div class="pic"><img class="img-responsive" src="img/team/vincent.png" alt="Vincent Riamon, developer Feathers and Leaves on Raven-Os"></div>
+                        <h4>Vincent Riamon</h4>
+                        <span class="too-long">Feathers / Leaves <br>Developer</span>
+                      </div>
+                        <div class="social">
+                            <a target="_blank" href="https://github.com/riamon-v"><i class="fab fa-github"></i></a>
+                            <a target="_blank" href="https://www.linkedin.com/in/vincent-riamon-27626a127/"><i class="fab fa-linkedin"></i></a>
                         </div>
                     </div>
+                  </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-1 col-md-0 col-xs-0"></div>
-                    <div class="col-lg-2 col-md-4 col-xs-6">
-                        <div class="member">
-                            <div class="pic"><img src="img/team/louis.png" alt=""></div>
+                <div class="row row-team">
+                  <div class="col-sm-10 content-row-team">
+                        <div class="member-bottom">
+                            <div class="pic"><img src="img/team/louis.png" alt="Louis Guittard, developer Feathers on Raven-Os"></div>
                             <h4>Louis Guittard</h4>
                             <span>Feathers Developer</span>
                             <div class="social">
@@ -250,53 +232,51 @@
                                 <a target="_blank" href="https://www.linkedin.com/in/louis-guittard-1205a7119/"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-xs-6">
-                        <div class="member">
-                            <div class="pic"><img src="img/team/melis.png" alt=""></div>
+
+                        <div class="member-bottom">
+                          <div id="Matteo">
+                            <div class="pic"><img src="img/team/melis.png" alt="Matteo Melis, developer Nest on Raven-Os"></div>
                             <h4>Matteo Melis</h4>
                             <span>Nest Developer</span>
+                          </div>
                             <div class="social">
                                 <a target="_blank" href="https://github.com/melis-m"><i class="fab fa-github"></i></a>
                                 <a target="_blank" href="https://www.linkedin.com/in/matteo-melis-42ab25104/"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-xs-6">
-                        <div class="member">
-                            <div class="pic"><img src="img/team/dorian.png" alt=""></div>
+
+                        <div class="member-bottom">
+                          <div id="Dorian">
+                            <div class="pic"><img src="img/team/dorian.png" alt="Dorian Trubelle, community manager and developer Nest on Raven-Os"></div>
                             <h4>Dorian Trubelle</h4>
-                            <span>Community Manager<br />Nest Developer</span>
+                            <span>Community Manager / Developer</span>
+                          </div>
                             <div class="social">
                                 <a target="_blank" href="https://github.com/Pedrochu"><i class="fab fa-github"></i></a>
                                 <a target="_blank" href="https://www.linkedin.com/in/dorian-trubelle-341a91114/"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-xs-6">
-                        <div class="member">
-                            <div class="pic"><img src="img/team/melvin.png" alt=""></div>
+
+                        <div class="member-bottom">
+                            <div class="pic"><img src="img/team/melvin.png" alt="Melvin Personnier, developer for Leaves on Raven-Os"></div>
                             <h4>Melvin Personnier</h4>
-                            <span>Web Developer</span>
+                            <span>Leaves Developer</span>
                             <div class="social">
                                 <a target="_blank" href="https://github.com/person-m"><i class="fab fa-github"></i></a>
                                 <a target="_blank" href="https://www.linkedin.com/in/mpersonnier/"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-xs-6">
-                        <div class="member">
-                            <div class="pic"><img src="img/team/mickael.png" alt=""></div>
+
+                        <div class="member-bottom">
+                            <div class="pic"><img src="img/team/mickael.png" alt="Mickaël Bourgois, developer for Leaves on Raven-Os"></div>
                             <h4>Mickaël Bourgois</h4>
-                            <span>Web Developer</span>
+                            <span>Leaves Developer</span>
                             <div class="social">
                                 <a target="_blank" href="https://github.com/BourgoisMickael"><i class="fab fa-github"></i></a>
                                 <a target="_blank" href="https://www.linkedin.com/in/mickael-bourgois-27214914b/"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-1 col-md-0 col-xs-0"></div>
-                </div>
+              </div>
             </div>
         </section><!-- #team -->
         <!--==========================
@@ -318,25 +298,7 @@
     <!--==========================
       Footer
     ============================-->
-    <footer id="footer">
-        <div class="footer-top">
-            <div class="container">
-            </div>
-        </div>
-        <div class="container">
-            <div class="copyright">
-                &copy; Copyright <strong>Raven</strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-                <!--
-                  All the links in the footer should remain intact.
-                  You can delete the links only if you purchased the pro version.
-                  Licensing information: https://bootstrapmade.com/license/
-                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Regna
-                -->
-            </div>
-        </div>
-    </footer><!-- #footer -->
+    {{> footer}}
     <a href="#" class="back-to-top"><i class="fas fa-chevron-up"></i></a>
     <!-- JavaScript Libraries -->
     <script src="lib/jquery/jquery.min.js"></script>

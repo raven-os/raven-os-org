@@ -22,12 +22,30 @@ pub struct DbConn(pub r2d2::PooledConnection<ConnectionManager<MysqlConnection>>
 #[derive(Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug, Default)]
 pub struct AdminToken(pub String);
 
+/// A vector containing allowed file extension to request
+#[derive(Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug, Default)]
+pub struct Whitelist {
+    pub v: Vec<String>,
+}
+
 /// Contains all the application configuration objects
 pub struct MyConfig {
     /// The database pool
     pub pool: Pool,
     /// The admin token
     pub admin_token: AdminToken,
+    /// Extension request whitelist
+    pub whitelist: Whitelist,
+}
+
+/// Parse the whitelist string and store extensions in vector
+pub fn extension_whitelist(whitelist: &str) -> Whitelist {
+    let vector: Vec<&str> = whitelist.split('/').collect();
+    let mut owned_vector: Vec<String> = Vec::new();
+    for extension in vector {
+        owned_vector.push(extension.to_string());
+    }
+    Whitelist::new(owned_vector)
 }
 
 /// Initializes a database pool.
@@ -77,5 +95,29 @@ impl<'a> FromParam<'a> for AdminToken {
 
     fn from_param(param: &'a RawStr) -> Result<AdminToken, Self::Error> {
         Ok(AdminToken(param.to_string()))
+    }
+}
+
+/// Retrieves the managed Whitelist
+impl<'a, 'r> FromRequest<'a, 'r> for Whitelist {
+    type Error = ();
+
+    fn from_request(request: &'a Request<'r>) -> request::Outcome<Whitelist, ()> {
+        request
+            .guard::<State<MyConfig>>()
+            .map(|config| config.whitelist.clone())
+    }
+}
+
+/// Implementation of whitelist
+impl Whitelist {
+    /// Constructor
+    pub fn new(v: Vec<String>) -> Whitelist {
+        Whitelist { v: v }
+    }
+
+    /// return true if whitelist contains extension
+    pub fn contains(&self, extension: &String) -> bool {
+        self.v.contains(extension)
     }
 }

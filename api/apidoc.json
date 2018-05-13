@@ -1,7 +1,0 @@
-{
-  "name": "Newsletter API",
-  "version": "1.0.0",
-  "description": "API for the newsletter of raven-os",
-  "title": "Newsletter-API",
-  "url": "localhost:8000"
-}

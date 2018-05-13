@@ -5,6 +5,8 @@ workers = [number of cpus * 2]
 log = "normal"
 secret_key = [randomly generated at launch]
 limits = { forms = 32768 }
+template_dir = "front/"
+
 
 [staging]
 address = "0.0.0.0"
@@ -13,6 +15,7 @@ workers = [number of cpus * 2]
 log = "normal"
 secret_key = [randomly generated at launch]
 limits = { forms = 32768 }
+template_dir = "front/"
 
 [production]
 address = "0.0.0.0"
@@ -21,3 +24,4 @@ workers = [number of cpus * 2]
 log = "critical"
 secret_key = [randomly generated at launch]
 limits = { forms = 32768 }
+template_dir = "front/"

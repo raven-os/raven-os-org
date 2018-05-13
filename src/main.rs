@@ -33,13 +33,18 @@ extern crate rocket_contrib;
 // Used for random
 extern crate rand;
 
+pub mod catchers;
 pub mod config;
 pub mod db;
 pub mod routes;
 
-use config::{init_pool, AdminToken, MyConfig};
+use config::{extension_whitelist, init_pool, AdminToken, MyConfig};
 
+use catchers::get_catchers;
+use routes::front::get_routes as front_routes;
 use routes::user::get_routes as user_routes;
+
+use rocket_contrib::Template;
 
 fn main() {
     dotenv::dotenv().ok();
@@ -47,11 +52,15 @@ fn main() {
     let config = MyConfig {
         pool: init_pool(&get_env("DATABASE_URL")),
         admin_token: AdminToken(get_env("ADMIN_TOKEN")),
+        whitelist: extension_whitelist(&get_env("WHITELIST")),
     };
 
     rocket::ignite()
         .manage(config)
         .mount("/emails", user_routes())
+        .mount("/", front_routes())
+        .catch(get_catchers())
+        .attach(Template::fairing())
         .launch();
 }
 

@@ -689,12 +689,10 @@ section:hover .section-header .section-title {
 }
 
 @media screen and (max-width:1200px) and (min-width:990px) {
-
   #Flora {
     position:relative;
     top: 17Px;
   }
-
 }
 
 @media screen and (max-width:990px) {
@@ -707,7 +705,6 @@ section:hover .section-header .section-title {
     #team .member-top {
       width:30%;
     }
-
 }
 
 @media screen and (max-width:420px) and (min-width:325px) {

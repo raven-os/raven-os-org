@@ -1,0 +1,7 @@
+{
+  "name": "Website's API",
+  "version": "1.0.0",
+  "description": "API for the website of raven-os",
+  "title": "API-Website",
+  "url": "localhost:8000"
+}

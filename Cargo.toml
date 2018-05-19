@@ -1,0 +1,20 @@
+[package]
+name = "website"
+version = "0.1.0"
+authors = ["Melvin PERSONNIER <melvin.personnier@gmail.com>", "Mickael BOURGOIS <mickael.bourgois@epitech.eu"]
+
+[dependencies]
+diesel = { version = "1.0.0", features = ["mysql"] }
+dotenv = "0.9.0"
+rocket = "0.3.6"
+rocket_codegen = "0.3.6"
+r2d2-diesel = "1.0"
+r2d2 = "0.8"
+serde = "1.0"
+serde_derive = "1.0"
+rand="0.4"
+
+[dependencies.rocket_contrib]
+version = "*"
+default-features = false
+features = ["json", "handlebars_templates"]

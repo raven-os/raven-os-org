@@ -747,6 +747,7 @@ section:hover .section-header .section-title {
     font-style: italic;
     display: block;
     font-size: 13px;
+    color: var(--primary-dark);
 }
 
 #team .member-top .social, #team .member-bottom .social {

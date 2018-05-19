@@ -660,46 +660,108 @@ section:hover .section-header .section-title {
     padding: 80px 0 60px 0;
 }
 
-#team .member {
-    text-align: center;
-    margin-bottom: 20px;
+.row-team {
+  margin:30px 0 30px 0;
 }
 
-#team .member .pic {
+.row-team .content-row-team {
+    margin:0 auto 0 auto;
+    display:inline-block;
+}
+
+#team .member-top, #team .member-bottom {
+    text-align: center;
+    display:inline-block;
+    margin-bottom: 10px;
+}
+
+#team .member-top {
+  width:16%;
+}
+
+#team .member-bottom {
+  width:19%;
+}
+
+#Dorian, #Vincent {
+  position:relative;
+  top:17px;
+}
+
+@media screen and (max-width:1200px) and (min-width:990px) {
+
+  #Flora {
+    position:relative;
+    top: 17Px;
+  }
+
+}
+
+@media screen and (max-width:990px) {
+    #team .member-top, #team .member-bottom {
+      width:32%;
+    }
+}
+
+@media screen and (max-width:768px and min-width: 575px) {
+    #team .member-top {
+      width:30%;
+    }
+
+}
+
+@media screen and (max-width:420px) and (min-width:325px) {
+  #Matteo {
+    position:relative;
+    top:-17px;
+  }
+}
+
+@media screen and (max-width:325px) {
+  #Benjamin {
+    position:relative;
+    top:17px;
+  }
+}
+
+#team .member-top .pic, #team .member-bottom .pic {
     margin-bottom: 15px;
     overflow: hidden;
 }
 
-#team .member .pic img {
+#team .member-top .pic img, #team .member-bottom .pic img {
     max-width: 100%;
+    max-height:130px;
 }
 
-#team .member h4 {
+#team .member-top h4, #team .member-bottom h4 {
     font-weight: 700;
     margin-bottom: 2px;
-    font-size: 18px;
+    font-size: 15px;
+    max-height:17px;
+    overflow: hidden;
     color: var(--primary-dark);
 }
 
-#team .member span {
+#team .member-top span, #team .member-bottom span {
     font-style: italic;
     display: block;
     font-size: 13px;
 }
 
-#team .member .social {
+#team .member-top .social, #team .member-bottom .social {
     margin-top: 15px;
 }
 
-#team .member .social a {
+#team .member-top .social a, #team .member-bottom .social a {
     color: var(--primary-dark);
 }
 
-#team .member .social a:hover {
+#team .member-top .social a:hover, #team .member-bottom .social a:hover {
     color: var(--accent);
 }
 
-#team .member .social i {
+#team .member-top .social i, #team .member-bottom .social i {
     font-size: 18px;
     margin: 0 2px;
 }

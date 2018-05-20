@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\css"
+    "\\front",
+    "\\front\\css",
+    "\\front\\img"
   ],
-  "SelectedNode": "\\css\\style404.css",
+  "SelectedNode": "\\front\\404.html.hbs",
   "PreviewInSolutionExplorer": false
 }

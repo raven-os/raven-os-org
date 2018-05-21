@@ -1,0 +1,22 @@
+language: rust
+cache: cargo
+rust: nightly
+before_script:
+  - rustup component add rustfmt-preview
+  - rustup update
+  - cargo update
+
+script:
+  - cargo fmt --all -- --check
+  - cargo build --all
+  - cargo test --all
+
+# Discord notifications
+after_success:
+  - wget https://gist.githubusercontent.com/Arignir/d9a8cb72c9a7c95b7981df56a188d5de/raw/3703660d851e81444c2ce26b3d41d98081e2f2c4/discord.sh
+  - chmod +x discord.sh
+  - ./discord.sh success "$DISCORD_WEBHOOK_URL"
+after_failure:
+  - wget https://gist.githubusercontent.com/Arignir/d9a8cb72c9a7c95b7981df56a188d5de/raw/3703660d851e81444c2ce26b3d41d98081e2f2c4/discord.sh
+  - chmod +x discord.sh
+  - ./discord.sh failure "$DISCORD_WEBHOOK_URL"

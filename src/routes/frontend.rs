@@ -20,3 +20,8 @@ pub fn static_files(files: PathBuf) -> Option<NamedFile> {
 pub fn index() -> Template {
     Template::render("index", HashMap::<&str, &str>::new())
 }
+
+#[get("/logo")]
+pub fn logo() -> Template {
+    Template::render("logo", HashMap::<&str, &str>::new())
+}

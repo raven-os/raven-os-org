@@ -1,0 +1,16 @@
+@import url("style.css");
+
+body {
+	background: var(--primary);
+}
+
+#header {
+	background: var(--primary-dark);
+}
+
+#mainlogo {
+	padding: 10px;
+	text-align: center;
+	margin-top: 150px;
+}
+

@@ -30,8 +30,9 @@ body {
     vertical-align: middle;
 }
 
-#main404 .main404-container h1, a {
-	margin-left: 150px;
+#main404 .main404-container h1 {
+	/* margin-left: 150px; */
+	margin-top: 120px;
 }
 
 #main404 .main404-container a {

@@ -52,7 +52,11 @@ fn main() {
         .manage(newsletter)
         .mount(
             "/",
-            routes![routes::frontend::static_files, routes::frontend::index, routes::frontend::logo,],
+            routes![
+                routes::frontend::static_files,
+                routes::frontend::index,
+                routes::frontend::logo,
+            ],
         )
         .mount(
             "/newsletter/",

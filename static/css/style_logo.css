@@ -1,0 +1,59 @@
+@import url("style.css");
+
+body {
+	background: var(--primary);
+}
+
+#header {
+	background: var(--primary-dark);
+}
+
+#mainlogo {
+	padding: 10px;
+	text-align: center;
+	margin-top: 150px;
+}
+
+#mainlogo-container {
+	align: center;
+	border-spacing: 20px;
+	display: table-cell;
+}
+
+#mainlogo .logo_box {
+	border: 1px solid var(--accent);
+	padding: 20px;
+	vertical-align: middle;
+	margin-left: 25px;
+}
+
+#mainlogo .logo_box_black {
+	background: var(--primary-dark);
+}
+
+#mainlogo .logo_box img {
+	height: 200px;
+}
+
+#mainlogo .mainlogo-container .btn-dl {
+    font-family: "Poppins", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 8px 28px;
+    transition: 0.5s;
+    margin: 10px;
+    border: 2px solid var(--accent);
+    border-radius: 3px;
+    color: var(--primary);
+    background: rgba(237, 37, 78, 0.8);
+}
+
+#mainlogo .mainlogo-container .btn-dl:hover {
+    background: var(--accent);
+    border: 2px solid var(--accent);
+    border-radius: 2px;
+    color: var(--primary);
+}

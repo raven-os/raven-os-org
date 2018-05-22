@@ -54,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: 100%;
     overflow: visible;
-    background: var(--primary) url("../img/preloader.svg") no-repeat center center;
+    background: var(--primary) url("img/preloader.svg") no-repeat center center;
 }
 
 /* Back to top button */
@@ -404,7 +404,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     display: table;
     width: 100%;
     height: 100vh;
-    background: url(../img/home_page/raven_background.jpg) top center fixed;
+    background: url(/img/home_page/raven_background.jpg) top center fixed;
     background-size: cover;
 }
 
@@ -483,6 +483,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 --------------------------------------------------------------*/
 /* Sections Header
 --------------------------------*/
+section {
+	color: var(--primary-dark);
+}
+
 section:hover .section-header .section-title {
     color: var(--accent);
     transition: all 0.2s;

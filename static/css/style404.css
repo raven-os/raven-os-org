@@ -1,0 +1,39 @@
+@import url("style.css");
+
+body {
+	background: var(--primary);
+}
+
+#header {
+	background: var(--primary-dark);
+}
+
+#main404 {
+    display: table;
+    width: 100%;
+    height: 90.25vh;
+    background: url(/img/404_page/raven404.png) top center fixed;
+    background-size: cover;
+}
+
+@media (max-width:990px) {
+    #main404 {
+        background-position: 80% 50%;
+    }
+}
+
+#main404 .main404-container {
+    display: table-cell;
+    padding: 10px;
+    text-align: center;
+    background-size: 100%;
+    vertical-align: middle;
+}
+
+#main404 .main404-container h1, a {
+	margin-left: 150px;
+}
+
+#main404 .main404-container a {
+	color: var(--accent);
+}

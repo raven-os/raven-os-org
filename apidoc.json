@@ -1,7 +1,7 @@
 {
-  "name": "Website's API",
+  "name": "Raven-OS's Website's API",
   "version": "1.0.0",
-  "description": "API for the website of raven-os",
+  "description": "Raven-OS's Website's API",
   "title": "API-Website",
-  "url": "localhost:8000"
+  "url": "raven-os.org"
 }

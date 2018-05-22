@@ -2,78 +2,39 @@
 //!
 //! Contains actions to interact with a database using `Diesel`
 
-#[macro_use]
-pub mod models;
-mod schema;
+pub mod newsletter;
 
-use self::models::{NewUser, User};
-use diesel::delete;
-use diesel::insert_into;
-use diesel::prelude::*;
-use rand::{self, Rng};
+use rocket::http::Status;
+use rocket::request::{self, FromRequest, State};
+use rocket::{Outcome, Request};
 
-/// Return a random token
-fn generate_token() -> String {
-    let mut rng = rand::thread_rng();
-    let letter: char = rng.gen_range(b'A', b'Z') as char;
-    let number: u32 = rng.gen_range(0, 999_999);
-    format!("{}{:06}", letter, number)
-}
+use diesel::mysql::MysqlConnection;
+use r2d2;
+use r2d2_diesel::ConnectionManager;
 
-/// Creates an user and returns it or a string explaining the error
-pub fn create_user(conn: &MysqlConnection, user_email: &str) -> Result<User, String> {
-    use self::schema::users;
+use app::App;
 
-    let new_user = NewUser {
-        email: user_email,
-        token: &generate_token(),
-    };
+/// Connection request guard type: a wrapper around an r2d2 pooled connection.
+pub struct DbConnection(pub r2d2::PooledConnection<ConnectionManager<MysqlConnection>>);
 
-    let row = insert_into(users::table).values(&new_user).execute(conn);
-    match row {
-        Ok(_) => Ok(users::table.order(users::id.desc()).first(conn).unwrap()),
-        Err(s) => Err(s.to_string()),
+// DbConnection is only a wrapper around a MysqlConnection
+impl AsRef<MysqlConnection> for DbConnection {
+    fn as_ref(&self) -> &MysqlConnection {
+        &self.0
     }
 }
 
-/// Removes an user
-pub fn delete_user(
-    conn: &MysqlConnection,
-    user_email: &str,
-    user_token: &str,
-) -> Result<usize, String> {
-    use self::schema::users::dsl::*;
+/// Attempts to retrieve a single connection from the managed database pool. If
+/// no pool is currently managed, fails with an `InternalServerError` status. If
+/// no connections are available, fails with a `ServiceUnavailable` status.
+impl<'a, 'r> FromRequest<'a, 'r> for DbConnection {
+    type Error = ();
 
-    match users.filter(email.eq(user_email)).first::<User>(conn) {
-        Err(_) => Err("Not found".to_string()),
-        Ok(u) => {
-            if u.token() != user_token {
-                return Err("Forbidden".to_string());
-            }
-            match delete(users.filter(email.eq(u.email()))).execute(conn) {
-                Ok(deleted_row) => Ok(deleted_row),
-                Err(s) => Err(s.to_string()),
-            }
+    fn from_request(request: &'a Request<'r>) -> request::Outcome<DbConnection, ()> {
+        let app = request.guard::<State<App>>()?;
+        match app.pool().get() {
+            Ok(conn) => Outcome::Success(DbConnection(conn)),
+            Err(_) => Outcome::Failure((Status::ServiceUnavailable, ())),
         }
-    }
-}
-
-/// Retrieves all users
-pub fn get_all_users(conn: &MysqlConnection) -> Result<Vec<User>, String> {
-    use self::schema::users::dsl::*;
-
-    match users.load::<User>(conn) {
-        Ok(u) => Ok(u),
-        Err(s) => Err(s.to_string()),
-    }
-}
-
-/// Retrieves one user
-pub fn get_user(conn: &MysqlConnection, user_email: &str) -> Result<User, String> {
-    use self::schema::users::dsl::*;
-
-    match users.filter(email.eq(user_email)).first::<User>(conn) {
-        Err(_) => Err("Not found".to_string()),
-        Ok(user) => Ok(user),
     }
 }

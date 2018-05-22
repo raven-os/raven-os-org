@@ -4,5 +4,6 @@
 //! run `apidoc -i src -o docs -f ".*\\.rs$"`
 //! and `firefox docs/index.html`
 
-pub mod front;
-pub mod user;
+pub mod error;
+pub mod frontend;
+pub mod newsletter;

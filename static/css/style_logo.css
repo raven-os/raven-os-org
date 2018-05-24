@@ -16,9 +16,16 @@ body {
 
 #mainlogo-container {
 	align: center;
-	border-spacing: 20px;
+	border-spacing: 10px;
 	display: table-cell;
 	margin-top: 50px;
+}
+
+#mainlogo .logo_col {
+	display: table-cell;
+	align: center;
+	text-align: center;
+	border-spacing: 0;
 }
 
 #mainlogo .logo_box {
@@ -32,8 +39,49 @@ body {
 	background: var(--primary-dark);
 }
 
-#mainlogo .logo_box img {
+#mainlogo .logo_box img,
+#mainlogo .logo_small img {
 	height: 200px;
+}
+
+@media (max-width: 1400px) {
+	#mainlogo .logo_box img {
+		height: 150px;
+	}
+}
+@media (max-width: 1300px) {
+	#mainlogo .logo_box img {
+		height: 125px;
+	}
+}
+
+@media (max-width: 1200px) {
+	#mainlogo .logo_box img {
+		height: 100px;
+	}
+}
+
+@media (max-width: 1050px) {
+	#mainlogo .logo_box img {
+		height: 90px;
+	}
+}
+
+@media (max-width: 1050px) {
+	#main-logo .logo_small img {
+	}
+}
+
+@media (max-width: 800px) {
+	#mainlogo .logo_box img {
+		height: 65px;
+	}
+}
+
+@media (max-width: 800px) {
+	#mainlogo .logo_box img {
+		height: 55px;
+	}
 }
 
 #mainlogo .mainlogo-container .btn-dl {
@@ -43,13 +91,15 @@ body {
     font-size: 16px;
     letter-spacing: 1px;
     display: inline-block;
-    padding: 8px 28px;
+    padding: 8px;
     transition: 0.5s;
-    margin: 10px;
+	margin: 10px 25px;
     border: 2px solid var(--accent);
     border-radius: 3px;
     color: var(--primary);
     background: rgba(237, 37, 78, 0.8);
+	align: center;
+	text-align: center;
 }
 
 #mainlogo .mainlogo-container .btn-dl:hover {

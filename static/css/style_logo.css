@@ -110,12 +110,13 @@ body {
 }
 
 #mainlogo .mainlogo-explain {
-	margin-top: 100px;
+	margin-top: 50px;
+	margin-bottom: 100px;
 	text-align: center;
 	align: center;
 }
 
-#mainlogo .mainlogo-explain h4 {
+#mainlogo h4 {
 	border-bottom: 1px solid var(--accent);
 	padding: 10px;
 	text-align: center;

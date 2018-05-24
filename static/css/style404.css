@@ -12,7 +12,7 @@ body {
     display: table;
     width: 100%;
     height: 90.25vh;
-    background: url(/img/404_page/raven404.png) top center fixed;
+    background: url(/img/404/raven404.png) top center fixed;
     background-size: cover;
 }
 
@@ -31,9 +31,19 @@ body {
 }
 
 #main404 .main404-container h1 {
-	margin-top: 120px;
+	margin-top: 70px;
+	margin-bottom: 200px;
+	font-size: 50px;
+	color: var(--accent);
 }
 
 #main404 .main404-container a {
 	color: var(--accent);
+}
+
+@media (max-width:990px) {
+	#main404 .main404-container h1 {
+		margin-top: 170px;
+		margin-bottom: 75px;
+	}
 }

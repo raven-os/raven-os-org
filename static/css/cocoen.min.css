@@ -52,7 +52,7 @@
 .cocoen-drag::before {
     box-shadow: 0px 0px 5px 2px inset;
     background-color: #ed254e;
-    content: url('/img/home_page/double_caret.png');
+    content: url('/img/home/double_caret.png');
     color: white;
     font-size: 35px;
     text-align: center;

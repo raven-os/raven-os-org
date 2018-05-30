@@ -34,28 +34,31 @@
     ======================================================= -->
 
     <script>
-      function requestBackend() {
+    function requestBackend() {
         var email = document.getElementById("email-subscribe").value;
 
+        if (email === "") {
+            return;
+        }
         var http = new XMLHttpRequest();
-        var url = 'http://127.0.0.1:8000/newsletter';
+        var url = '/newsletter';
         http.open('POST', url, true);
 
         //Send the proper header information along with the request
         http.setRequestHeader('Content-type', 'application/json');
 
-        http.onreadystatechange = function() {//Call a function when the state changes.
+        http.onreadystatechange = function() {
             if(http.readyState == 4) {
-              if (http.status == 201) {
-                alert(email + " added to newsletter");
-              } else {
-                alert("Cannot add " + email + " to the newsletter");
-              }
+                if (http.status == 201) {
+                    alert(email + " added to newsletter");
+                } else {
+                    alert("Cannot add " + email + " to the newsletter");
+                }
             }
         }
         var data = JSON.stringify({"email": email});
         http.send(data);
-      }
+    }
     </script>
 </head>
 <body>

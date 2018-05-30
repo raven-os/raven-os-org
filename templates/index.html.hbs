@@ -32,6 +32,31 @@
       Author: BootstrapMade.com
       License: https://bootstrapmade.com/license/
     ======================================================= -->
+
+    <script>
+      function requestBackend() {
+        var email = document.getElementById("email-subscribe").value;
+
+        var http = new XMLHttpRequest();
+        var url = 'http://127.0.0.1:8000/newsletter';
+        http.open('POST', url, true);
+
+        //Send the proper header information along with the request
+        http.setRequestHeader('Content-type', 'application/json');
+
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4) {
+              if (http.status == 201) {
+                alert(email + " added to newsletter");
+              } else {
+                alert("Cannot add " + email + " to the newsletter");
+              }
+            }
+        }
+        var data = JSON.stringify({"email": email});
+        http.send(data);
+      }
+    </script>
 </head>
 <body>
     <!--==========================
@@ -288,9 +313,9 @@
                     <h3 class="section-title">Newsletter</h3>
                     <p class="section-description">Need some news of the project? Subscribe to our newsletter!</p>
                 </div>
-                <form id="form-subscribe" name="subscribe" action="#" method="get">
+                <form id="form-subscribe" name="subscribe" action="#" method="get" onsubmit="event.preventDefault();">
                     <input class="form-control" name="email-subscribe" id="email-subscribe" placeholder="Your Email" data-rule="email-subscribe" data-msg="Please enter a valid email" />
-                    <button type="submit" class="btn-suscribe">Subscribe</button>
+                    <button type="submit" class="btn-suscribe" onclick="requestBackend();">Subscribe</button>
                 </form>
             </div>
         </section><!-- #news -->

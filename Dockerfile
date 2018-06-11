@@ -18,6 +18,6 @@ RUN cargo build --release
 # You may want to edit these values, these are only default ones
 ENV ROCKET_ADDRESS="0.0.0.0"
 ENV ROCKET_PORT=80
-ENV DATABASE_URL="mysql://root:root@127.0.0.1/raven_website"
+ENV DATABASE_URL="mysql://root:root@127.0.0.1/raven-os-org"
 ENV RAVEN_ADMIN_TOKEN=admin_token
 CMD diesel setup && diesel migration run && cargo run --release

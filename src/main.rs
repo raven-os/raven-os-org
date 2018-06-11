@@ -1,4 +1,4 @@
-//! This is the API for Raven Website
+//! This is the API for Raven-OS's landing page
 //!
 //! Is contains for now only the newsletter endpoints
 

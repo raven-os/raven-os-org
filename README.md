@@ -1,12 +1,12 @@
-# Raven-OS's WebSite
+# Raven-OS's Landing page
 
-This is Raven-OS's website, used as a landing page and an easy way to present our project to the community.
+This is Raven-OS's landing page, used as an easy way to present our project, ideas and philosophy to the community.
 
-It's based on Rocket.
+It is based on Rocket.
 
 ## Getting Started
 
-These instructions will get your own copy Raven-OS's website up and running on your local machine for development and testing purposes.
+These instructions will get your own copy Raven-OS's landing page up and running on your local machine for development and testing purposes.
 
 See deployment for notes on how to deploy the project on a live system.
 
@@ -22,7 +22,7 @@ Install `diesel_cli` a tool that handle database operations
 $ cargo install diesel_cli --no-default-features --features mysql
 ```
 
-For Raven'OS's website to work, you will need to set some environment variables. You can add them by hand or put them in a `.env` file. The easiest way to do so is by copying the given example:
+For Raven-OS's landing page to work, you will need to set some environment variables. You can add them by hand or put them in a `.env` file. The easiest way to do so is by copying the given example:
 
 ```bash
 $ cp .env.example .env # You can edit .env as you wish
@@ -75,7 +75,7 @@ Example for `templates/subfolder/index.html.hbs`:
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="/img/RavenIco.ico" rel="icon">
+    <link href="/img/raven_ico.ico" rel="icon">
 </head>
 <body>
     {{> header}}

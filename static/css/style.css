@@ -18,7 +18,7 @@
 body {
     background: var(--primary-dark);
     color: var(--primary);
-    font-family: "Open Sans", sans-serif;
+    font-family: sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -39,7 +39,7 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Poppins", sans-serif;
+    font-family: sans-serif;
     font-weight: 400;
     margin: 0 0 20px 0;
     padding: 0;
@@ -111,7 +111,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 6px 0;
     line-height: 1;
-    font-family: "Poppins", sans-serif;
+    font-family: sans-serif;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -221,7 +221,7 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
     display: inline-block;
     color: var(--white);
-    font-family: "Poppins", sans-serif;
+    font-family: sans-serif;
     font-weight: 400;
     text-transform: uppercase;
     font-size: 13px;
@@ -424,7 +424,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #hero .hero-container .btn-suscribe {
-    font-family: "Poppins", sans-serif;
+    font-family: sans-serif;
     text-transform: uppercase;
     font-weight: 500;
     font-size: 16px;
@@ -799,7 +799,7 @@ section:hover .section-header .section-title {
 }
 
 #news .btn-suscribe {
-    font-family: "Poppins", sans-serif;
+    font-family: sans-serif;
     text-transform: uppercase;
     font-weight: 500;
     font-size: 16px;
@@ -823,7 +823,7 @@ section:hover .section-header .section-title {
 }
 
 #news .form-control {
-    font-family: "Poppins", sans-serif;
+    font-family: sans-serif;
     font-weight: 500;
     font-size: 16px;
     display: inline-block;

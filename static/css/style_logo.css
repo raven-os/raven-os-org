@@ -16,76 +16,41 @@ body {
 
 #mainlogo-container {
 	align: center;
-	border-spacing: 10px;
-	display: table-cell;
 	margin-top: 50px;
+	border-spacing: 10px;
 }
 
-#mainlogo .logo_col {
-	display: table-cell;
-	align: center;
+#mainlogo h3 {
 	text-align: center;
-	border-spacing: 0;
+	align: center;
+	margin: 50px 0px 30px 0px;
+	font-size: 20px;
 }
 
-#mainlogo .logo_box {
+#mainlogo h4 {
+	border-bottom: 1px solid var(--accent);
+	padding: 10px;
+	text-align: center;
+	align: center;
+}
+
+
+#mainlogo .logo-box {
 	border: 1px solid var(--accent);
-	padding: 20px;
-	vertical-align: middle;
-	margin-left: 25px;
+	padding: 25px 0px;
+	margin-top: 20px;
 }
 
-#mainlogo .logo_box_black {
-	background: var(--primary-dark);
-}
-
-#mainlogo .logo_box img,
-#mainlogo .logo_small img {
+#mainlogo .logo-box img {
 	height: 200px;
 }
 
-@media (max-width: 1400px) {
-	#mainlogo .logo_box img {
-		height: 150px;
-	}
-}
-@media (max-width: 1300px) {
-	#mainlogo .logo_box img {
-		height: 125px;
-	}
-}
-
-@media (max-width: 1200px) {
-	#mainlogo .logo_box img {
-		height: 100px;
-	}
-}
-
-@media (max-width: 1050px) {
-	#mainlogo .logo_box img {
-		height: 90px;
-	}
-}
-
-@media (max-width: 1050px) {
-	#main-logo .logo_small img {
-	}
-}
-
-@media (max-width: 800px) {
-	#mainlogo .logo_box img {
-		height: 65px;
-	}
-}
-
-@media (max-width: 800px) {
-	#mainlogo .logo_box img {
-		height: 55px;
-	}
+#mainlogo .logo-box-black {
+	background: var(--primary-dark);
 }
 
 #mainlogo .mainlogo-container .btn-dl {
-    font-family: "Poppins", sans-serif;
+    font-family: sans-serif;
     text-transform: uppercase;
     font-weight: 500;
     font-size: 16px;
@@ -93,13 +58,13 @@ body {
     display: inline-block;
     padding: 8px;
     transition: 0.5s;
-	margin: 10px 25px;
+	/* margin: 10px 25px; */
     border: 2px solid var(--accent);
     border-radius: 3px;
     color: var(--primary);
     background: rgba(237, 37, 78, 0.8);
-	align: center;
 	text-align: center;
+	vertical-align: middle;
 }
 
 #mainlogo .mainlogo-container .btn-dl:hover {
@@ -116,15 +81,31 @@ body {
 	align: center;
 }
 
-#mainlogo h4 {
-	border-bottom: 1px solid var(--accent);
-	padding: 10px;
-	text-align: center;
-	align: center;
-}
-
 #mainlogo .mainlogo-explain .mainlogo-explain-desc {
 	padding: 15px;
 	text-align: justify;
 	color: var(--primary-dark);
 }
+
+@media (max-width: 1024px) {
+	#mainlogo .logo-box img {
+		height: 175px;
+	}
+}
+@media (max-width: 414px) {
+	#mainlogo .logo-box img {
+		height: 115px;
+	}
+	#mainlogo h3 {
+		margin: 20px 0px 20px 0px;
+	}
+	#mainlogo h4 {
+		font-size: 20px;
+	}
+}
+@media (max-width: 320px) {
+	#mainlogo .logo-box img {
+		height: 100px;
+	}
+}
+

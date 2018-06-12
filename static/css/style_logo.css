@@ -1,0 +1,123 @@
+@import url("style.css");
+
+body {
+	background: var(--primary);
+}
+
+#header {
+	background: var(--primary-dark);
+}
+
+#mainlogo {
+	padding: 10px;
+	text-align: center;
+	margin-top: 150px;
+}
+
+#mainlogo-container {
+	align: center;
+	margin-top: 50px;
+	border-spacing: 10px;
+}
+
+#mainlogo h3 {
+	text-align: center;
+	align: center;
+	margin: 90px 0px 30px 0px;
+	font-size: 20px;
+}
+
+#mainlogo h4 {
+	border-bottom: 1px solid var(--accent);
+	padding: 10px;
+	text-align: center;
+	align: center;
+}
+
+
+#mainlogo .logo-box {
+	border: 1px solid var(--accent);
+	padding: 25px 0px;
+	margin-top: 20px;
+	margin-right: 25px;
+}
+
+#mainlogo .logo-box img {
+	height: 200px;
+}
+
+#mainlogo .logo-box-black {
+	background: var(--primary-dark);
+}
+
+#mainlogo .mainlogo-container .btn-dl {
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 8px;
+    transition: 0.5s;
+	/* margin: 10px 25px; */
+    border: 2px solid var(--accent);
+    border-radius: 3px;
+    color: var(--primary);
+    background: rgba(237, 37, 78, 0.8);
+	text-align: center;
+	vertical-align: middle;
+}
+
+#mainlogo .mainlogo-container .btn-dl:hover {
+    background: var(--accent);
+    border: 2px solid var(--accent);
+    border-radius: 2px;
+    color: var(--primary);
+}
+
+#mainlogo .mainlogo-explain {
+	margin-top: 70px;
+	margin-bottom: 70px;
+	text-align: center;
+	align: center;
+}
+
+#mainlogo .mainlogo-explain .mainlogo-explain-desc {
+	padding: 15px;
+	text-align: left;
+	color: var(--primary-dark);
+}
+
+.cross {
+	color: var(--accent);
+}
+
+.check {
+	color: #20a33a;
+}
+
+@media (max-width: 1024px) {
+	#mainlogo .logo-box img {
+		height: 175px;
+	}
+	#mainlogo h4 {
+		font-size: 22px;
+	}
+}
+@media (max-width: 414px) {
+	#mainlogo .logo-box img {
+		height: 115px;
+	}
+	#mainlogo h3 {
+		margin: 20px 0px 20px 0px;
+	}
+	#mainlogo h4 {
+		font-size: 20px;
+	}
+}
+@media (max-width: 320px) {
+	#mainlogo .logo-box img {
+		height: 100px;
+	}
+}
+

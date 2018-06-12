@@ -2,6 +2,8 @@ language: rust
 cache: cargo
 rust: nightly
 before_script:
+  - rustup install nightly-2018-05-10 # FIXME remove when diesel is fixed with 1.28.0-nightly
+  - rustup default nightly-2018-05-10 # FIXME remove when diesel is fixed with 1.28.0-nightly
   - rustup component add rustfmt-preview
   - rustup update
   - cargo update

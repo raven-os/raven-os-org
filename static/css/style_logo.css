@@ -83,8 +83,16 @@ body {
 
 #mainlogo .mainlogo-explain .mainlogo-explain-desc {
 	padding: 15px;
-	text-align: justify;
+	text-align: left;
 	color: var(--primary-dark);
+}
+
+.cross {
+	color: var(--accent);
+}
+
+.check {
+	color: #20a33a;
 }
 
 @media (max-width: 1024px) {

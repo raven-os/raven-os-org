@@ -3,7 +3,9 @@
 /target/
 **/*.rs.bk
 
-# Tool to manage our environment variables for us
+# Tool to manage environment variables
 .env
 Rocket.toml
+
+# Generated documentation
 docs

@@ -687,16 +687,22 @@ section:hover .section-header .section-title {
   width:19%;
 }
 
-#Louis span {
+#team .member-top .team-member-desc,
+#team .member-bottom .team-member-desc {
+	margin: 15px 0px 15px 0px;
+}
+
+#team .member-top .team-member-desc span,
+#team .member-bottom .team-member-desc span {
 	letter-spacing: -1px;
 }
 
-@media screen and (max-width:1200px) and (min-width:990px) {
-  #Flora {
-    position:relative;
-    top: 17Px;
-  }
-}
+/* @media screen and (max-width:1200px) and (min-width:990px) { */
+/*   #Flora { */
+/*     position:relative; */
+/*     top: 17Px; */
+/*   } */
+/* } */
 
 @media screen and (max-width:990px) {
     #team .member-top, #team .member-bottom {
@@ -710,18 +716,18 @@ section:hover .section-header .section-title {
     }
 }
 
-@media screen and (max-width:420px) and (min-width:325px) {
-  #Matteo {
-    position:relative;
-  }
-}
+/* @media screen and (max-width:420px) and (min-width:325px) { */
+/*   #Matteo { */
+/*     position:relative; */
+/*   } */
+/* } */
 
-@media screen and (max-width:325px) {
-  #Benjamin {
-    position:relative;
-    top:17px;
-  }
-}
+/* @media screen and (max-width:325px) { */
+/*   #Benjamin { */
+/*     position:relative; */
+/*     top:17px; */
+/*   } */
+/* } */
 
 #team .member-top .pic, #team .member-bottom .pic {
     margin-bottom: 15px;

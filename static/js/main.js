@@ -188,6 +188,7 @@ function requestBackendNewsletter() {
 			document.getElementById("subscribe-msg").style.visibility = 'visible';
 			if (http.status == 201) {
 				msg.innerHTML = 'You have sucessfully subscribed !';
+				document.getElementById("email-subscribe").value = '';
 			} else {
 				msg.innerHTML = 'Error while trying to subscribe, please try again.';
 			}

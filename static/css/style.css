@@ -697,13 +697,6 @@ section:hover .section-header .section-title {
 	letter-spacing: -1px;
 }
 
-/* @media screen and (max-width:1200px) and (min-width:990px) { */
-/*   #Flora { */
-/*     position:relative; */
-/*     top: 17Px; */
-/*   } */
-/* } */
-
 @media screen and (max-width:990px) {
     #team .member-top, #team .member-bottom {
       width:32%;
@@ -715,19 +708,6 @@ section:hover .section-header .section-title {
       width:30%;
     }
 }
-
-/* @media screen and (max-width:420px) and (min-width:325px) { */
-/*   #Matteo { */
-/*     position:relative; */
-/*   } */
-/* } */
-
-/* @media screen and (max-width:325px) { */
-/*   #Benjamin { */
-/*     position:relative; */
-/*     top:17px; */
-/*   } */
-/* } */
 
 #team .member-top .pic, #team .member-bottom .pic {
     margin-bottom: 15px;

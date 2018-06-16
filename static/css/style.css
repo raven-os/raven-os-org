@@ -760,6 +760,10 @@ section:hover .section-header .section-title {
     padding: 80px 0px 60px 0px;
 }
 
+#news .section-header {
+	margin-bottom: 15px;
+}
+
 #news .news-container .form-bg {
     background: rgba(0, 0, 0, 0.3);
     width: 100%;
@@ -771,6 +775,13 @@ section:hover .section-header .section-title {
 #news .news-container .form-bg form {
     display: inline-block;
     text-align: center;
+}
+
+#news h4 {
+	font-size: 15px;
+	color: var(--accent);
+	margin: 10px 0px 10px 0px;
+	visiblity: hidden;
 }
 
 .form-bg {

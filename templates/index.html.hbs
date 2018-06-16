@@ -32,34 +32,6 @@
       Author: BootstrapMade.com
       License: https://bootstrapmade.com/license/
     ======================================================= -->
-
-    <script>
-    function requestBackend() {
-        var email = document.getElementById("email-subscribe").value;
-
-        if (email === "") {
-            return;
-        }
-        var http = new XMLHttpRequest();
-        var url = '/newsletter';
-        http.open('POST', url, true);
-
-        //Send the proper header information along with the request
-        http.setRequestHeader('Content-type', 'application/json');
-
-        http.onreadystatechange = function() {
-            if(http.readyState == 4) {
-                if (http.status == 201) {
-                    alert(email + " added to newsletter");
-                } else {
-                    alert("Cannot add " + email + " to the newsletter");
-                }
-            }
-        }
-        var data = JSON.stringify({"email": email});
-        http.send(data);
-    }
-    </script>
 </head>
 <body>
     <!--==========================
@@ -333,9 +305,12 @@
                     <h3 class="section-title">Newsletter</h3>
                     <p class="section-description">Need some news of the project? Subscribe to our newsletter!</p>
                 </div>
+				<h4 id="subscribe-ok">You've been successfully registered!</h3>
+				<h4 id="subscribe-fail">Error while trying to subscribe, please try again.</h3>
                 <form id="form-subscribe" name="subscribe" action="#" method="get" onsubmit="event.preventDefault();">
                     <input class="form-control" name="email-subscribe" id="email-subscribe" placeholder="Your Email" data-rule="email-subscribe" data-msg="Please enter a valid email" />
-                    <button type="submit" class="btn-suscribe" onclick="requestBackend();">Subscribe</button>
+                    <!-- <button type="submit" class="btn&#45;suscribe" onclick="requestBackend();">Subscribe</button> -->
+                    <button type="submit" class="btn-suscribe" onclick="requestBackendNewsletter();">Subscribe</button>
                 </form>
             </div>
         </section><!-- #news -->
@@ -358,6 +333,6 @@
     <script src="lib/superfish/superfish.min.js"></script>
     <script src="lib/cocoen.min.js"></script>
     <!-- Template Main Javascript File -->
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html>

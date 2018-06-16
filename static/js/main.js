@@ -33,9 +33,6 @@
         return false;
     });
 	
-	document.getElementById("subscribe-ok").style.visibility = 'hidden';
-	document.getElementById("subscribe-fail").style.visibility = 'hidden';
-
 	new Cocoen(document.querySelector('.cocoen'));
 	// Initiate the wowjs
 	new WOW().init();
@@ -129,16 +126,8 @@
 	});
 
 	// custom code
+	document.getElementById("subscribe-msg").style.visibility = 'hidden';
 
-	//var waypoint = new Waypoint({
-	//    element: document.getElementById('first-point'),
-	//    handler: function (direction) {
-	//        if (direction == 'down') {
-	//            line1.show('draw');
-	//        }
-	//    },
-	//    offset: 150
-	//})
 
 	// Red line
 	// Get a reference to the <path>
@@ -195,12 +184,12 @@ function requestBackendNewsletter() {
 
 	http.onreadystatechange = function() {
 		if (http.readyState == 4) {
+			var	msg = document.getElementById("subscribe-msg");
+			document.getElementById("subscribe-msg").style.visibility = 'visible';
 			if (http.status == 201) {
-				document.getElementById("subscribe-ok").style.visibility = 'visible';
-				document.getElementById("subscribe-fail").style.visibility = 'hidden';
+				msg.innerHTML = 'You have sucessfully subscribed !';
 			} else {
-				document.getElementById("subscribe-ok").style.visibility = 'hidden';
-				document.getElementById("subscribe-fail").style.visibility = 'visible';
+				msg.innerHTML = 'Error while trying to subscribe, please try again.';
 			}
 		}
 	}

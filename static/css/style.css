@@ -777,11 +777,11 @@ section:hover .section-header .section-title {
     text-align: center;
 }
 
-#news h4 {
+#subscribe-msg {
 	font-size: 15px;
 	color: var(--accent);
 	margin: 10px 0px 10px 0px;
-	visiblity: hidden;
+	/* visibility: hidden !important; */
 }
 
 .form-bg {

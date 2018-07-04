@@ -1,4 +1,4 @@
-# Raven-OS's Landing page
+# Raven-OS's Landing page [![Build Status](https://travis-ci.org/raven-os/raven-os-org.svg?branch=master)](https://travis-ci.org/raven-os/raven-os-org)
 
 This is Raven-OS's landing page, used as an easy way to present our project, ideas and philosophy to the community.
 

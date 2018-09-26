@@ -4,8 +4,9 @@
 use db::newsletter::schema::newsletter_users;
 
 /// Represents a user suscribed to the newsletter
-#[derive(Queryable, Deserialize, Serialize, Debug, Clone, Eq, PartialEq, Ord, PartialOrd, Hash,
-         Default)]
+#[derive(
+    Queryable, Deserialize, Serialize, Debug, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Default,
+)]
 pub struct NewsletterUser {
     id: i32,
     email: String,

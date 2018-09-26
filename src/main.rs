@@ -57,16 +57,14 @@ fn main() {
                 routes::frontend::index,
                 routes::frontend::logo,
             ],
-        )
-        .mount(
+        ).mount(
             "/newsletter/",
             routes![
                 routes::newsletter::add,
                 routes::newsletter::remove,
                 routes::newsletter::dump,
             ],
-        )
-        .catch(errors![routes::error::not_found,])
+        ).catch(errors![routes::error::not_found,])
         .attach(rocket_contrib::Template::fairing())
         .launch();
 }

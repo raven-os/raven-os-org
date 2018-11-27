@@ -6,10 +6,10 @@ use diesel::prelude::*;
 use failure::Error;
 use uuid::Uuid;
 
-use app::ApiError;
-use db::newsletter::models::{NewNewsletterUser, NewsletterUser};
-use db::newsletter::schema::newsletter_users;
-use db::DbConnection;
+use crate::app::ApiError;
+use crate::db::newsletter::models::{NewNewsletterUser, NewsletterUser};
+use crate::db::newsletter::schema::newsletter_users;
+use crate::db::DbConnection;
 
 #[derive(Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug, Default)]
 pub struct Newsletter {
@@ -51,7 +51,7 @@ impl Newsletter {
         uemail: &str,
         utoken: &str,
     ) -> Result<(), (Status, ApiError)> {
-        use db::newsletter::schema::newsletter_users::dsl::*;
+        use crate::db::newsletter::schema::newsletter_users::dsl::*;
 
         let user = newsletter_users
             .filter(email.eq(uemail))
@@ -80,7 +80,7 @@ impl Newsletter {
     }
 
     pub fn users(&self, db_con: &DbConnection) -> Result<Vec<NewsletterUser>, Error> {
-        use db::newsletter::schema::newsletter_users::dsl::*;
+        use crate::db::newsletter::schema::newsletter_users::dsl::*;
 
         Ok(newsletter_users.load::<NewsletterUser>(db_con.as_ref())?)
     }

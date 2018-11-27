@@ -9,8 +9,8 @@ use diesel::mysql::MysqlConnection;
 use r2d2::Pool;
 use r2d2_diesel::ConnectionManager;
 
+use crate::json;
 use failure::Error;
-use json;
 use serde::Serialize;
 
 pub struct App {
@@ -67,7 +67,8 @@ impl<T: Serialize, E: Serialize> Responder<'static> for ApiResult<T, E> {
             let mut req = content::Json(string).respond_to(req).unwrap();
             req.set_status(self.code);
             req
-        }).map_err(|_| Status::InternalServerError)
+        })
+        .map_err(|_| Status::InternalServerError)
     }
 }
 

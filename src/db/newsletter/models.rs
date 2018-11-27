@@ -1,7 +1,7 @@
 //! This module contains structures used to represent all data stored in database
 //! by the newsletter system.
 
-use db::newsletter::schema::newsletter_users;
+use crate::db::newsletter::schema::newsletter_users;
 
 /// Represents a user suscribed to the newsletter
 #[derive(

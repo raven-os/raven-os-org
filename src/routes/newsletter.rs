@@ -66,7 +66,7 @@ fn add(
     } else {
         ApiResult::error(
             Status::BadRequest,
-            ApiError::from("already_registered", "the user is already registered"),
+            ApiError::from("already_registered", "you are already registered"),
         )
     }
 }

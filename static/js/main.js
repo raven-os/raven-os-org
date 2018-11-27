@@ -32,7 +32,7 @@
         $('html, body').animate({ scrollTop: 0 }, 1500, 'easeInOutExpo');
         return false;
     });
-	
+
 	new Cocoen(document.querySelector('.cocoen'));
 	// Initiate the wowjs
 	new WOW().init();
@@ -125,10 +125,6 @@
 		time: 1000
 	});
 
-	// custom code
-	document.getElementById("subscribe-msg").style.visibility = 'hidden';
-
-
 	// Red line
 	// Get a reference to the <path>
 	var path = document.querySelector('#red-line');
@@ -146,7 +142,7 @@
 
 	// When the page scrolls...
 	window.addEventListener("scroll", function (e) {
-		// What % down is it? 
+		// What % down is it?
 		var scrollRatioage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
 
 		// Set the target percentage
@@ -175,6 +171,7 @@ function requestBackendNewsletter() {
 	if (email === "") {
 		return;
 	}
+
 	var http = new XMLHttpRequest();
 	var url = '/newsletter';
 	http.open('POST', url, true);
@@ -184,13 +181,17 @@ function requestBackendNewsletter() {
 
 	http.onreadystatechange = function() {
 		if (http.readyState == 4) {
-			var	msg = document.getElementById("subscribe-msg");
-			document.getElementById("subscribe-msg").style.visibility = 'visible';
+			var msg = document.getElementById("form-alert");
+			msg.style.visibility = 'visible';
+			msg.classList.remove("alert-success");
+			msg.classList.remove("alert-danger");
 			if (http.status == 201) {
-				msg.innerHTML = 'You have sucessfully subscribed !';
+				msg.innerHTML = 'You have been sucessfully subscribed!';
+				msg.classList.add("alert-success");
 				document.getElementById("email-subscribe").value = '';
 			} else {
-				msg.innerHTML = 'Error while trying to subscribe, please try again.';
+				msg.innerHTML = 'Error: ' + JSON.parse(http.responseText).error_description;
+				msg.classList.add("alert-danger");
 			}
 		}
 	}

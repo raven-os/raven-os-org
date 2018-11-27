@@ -12,7 +12,7 @@ use diesel::mysql::MysqlConnection;
 use r2d2;
 use r2d2_diesel::ConnectionManager;
 
-use app::App;
+use crate::app::App;
 
 /// Connection request guard type: a wrapper around an r2d2 pooled connection.
 pub struct DbConnection(pub r2d2::PooledConnection<ConnectionManager<MysqlConnection>>);

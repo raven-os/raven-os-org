@@ -7,6 +7,7 @@
 #![cfg_attr(feature = "cargo-clippy", allow(needless_pass_by_value))]
 #![cfg_attr(feature = "cargo-clippy", allow(doc_markdown))]
 #![cfg_attr(feature = "cargo-clippy", allow(print_literal))]
+#![allow(proc_macro_derive_resolution_fallback)] // disable warnings for diesel in rust 2018
 
 extern crate dotenv;
 extern crate rocket;
@@ -27,8 +28,8 @@ pub mod app;
 pub mod db;
 pub mod routes;
 
-use app::newsletter::Newsletter;
-use app::App;
+use crate::app::newsletter::Newsletter;
+use crate::app::App;
 
 /// Retrieves the needed environment variables or exits
 fn get_env(var: &str) -> String {
@@ -57,14 +58,16 @@ fn main() {
                 routes::frontend::index,
                 routes::frontend::logo,
             ],
-        ).mount(
+        )
+        .mount(
             "/newsletter/",
             routes![
                 routes::newsletter::add,
                 routes::newsletter::remove,
                 routes::newsletter::dump,
             ],
-        ).catch(errors![routes::error::not_found,])
+        )
+        .catch(catchers![routes::error::not_found,])
         .attach(rocket_contrib::Template::fairing())
         .launch();
 }

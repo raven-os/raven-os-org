@@ -1,14 +1,14 @@
 //! Contains all newsletter routes
 
-use json;
+use crate::json;
 use rocket::http::Status;
 use rocket::State;
 use rocket_contrib::Json;
 
-use app::newsletter::Newsletter;
-use app::{ApiError, ApiResult};
-use db::newsletter::NewsletterUser;
-use db::DbConnection;
+use crate::app::newsletter::Newsletter;
+use crate::app::{ApiError, ApiResult};
+use crate::db::newsletter::NewsletterUser;
+use crate::db::DbConnection;
 
 // The following structures are used as parameter for API endpoints
 

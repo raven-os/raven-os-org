@@ -3,8 +3,9 @@
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 
+use rocket::get;
 use rocket::response::NamedFile;
-use rocket_contrib::Template;
+use rocket_contrib::templates::Template;
 
 #[get("/<files..>", rank = 0)]
 pub fn static_files(files: PathBuf) -> Option<NamedFile> {

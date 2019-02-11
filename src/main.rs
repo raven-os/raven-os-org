@@ -2,32 +2,16 @@
 //!
 //! Is contains for now only the newsletter endpoints
 
-#![feature(plugin)]
-#![plugin(rocket_codegen)]
-#![cfg_attr(feature = "cargo-clippy", allow(needless_pass_by_value))]
-#![cfg_attr(feature = "cargo-clippy", allow(doc_markdown))]
-#![cfg_attr(feature = "cargo-clippy", allow(print_literal))]
-#![allow(proc_macro_derive_resolution_fallback)] // disable warnings for diesel in rust 2018
+#![feature(proc_macro_hygiene, decl_macro)]
 
-extern crate dotenv;
-extern crate rocket;
 #[macro_use]
 extern crate diesel;
-extern crate r2d2;
-extern crate r2d2_diesel;
-#[macro_use]
-extern crate serde_derive;
-extern crate failure;
-extern crate rand;
-extern crate rocket_contrib;
-extern crate serde;
-extern crate serde_json as json;
-extern crate uuid;
 
 pub mod app;
 pub mod db;
 pub mod routes;
 
+use rocket;
 use crate::app::newsletter::Newsletter;
 use crate::app::App;
 
@@ -53,7 +37,7 @@ fn main() {
         .manage(newsletter)
         .mount(
             "/",
-            routes![
+            rocket::routes![
                 routes::frontend::static_files,
                 routes::frontend::index,
                 routes::frontend::logo,
@@ -61,13 +45,13 @@ fn main() {
         )
         .mount(
             "/newsletter/",
-            routes![
+            rocket::routes![
                 routes::newsletter::add,
                 routes::newsletter::remove,
                 routes::newsletter::dump,
             ],
         )
-        .catch(catchers![routes::error::not_found,])
-        .attach(rocket_contrib::Template::fairing())
+        .register(rocket::catchers![routes::error::not_found])
+        .attach(rocket_contrib::templates::Template::fairing())
         .launch();
 }

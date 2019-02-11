@@ -5,13 +5,13 @@ use rocket::response::Responder;
 use rocket::response::{self, content};
 use rocket::Request;
 
+use failure::Error;
+use serde::{Serialize, Deserialize};
+use serde_json;
 use diesel::mysql::MysqlConnection;
 use r2d2::Pool;
 use r2d2_diesel::ConnectionManager;
 
-use crate::json;
-use failure::Error;
-use serde::Serialize;
 
 pub struct App {
     pool: Pool<ConnectionManager<MysqlConnection>>,
@@ -58,8 +58,8 @@ impl<T: Serialize, E: Serialize> Responder<'static> for ApiResult<T, E> {
     fn respond_to(self, req: &Request) -> response::Result<'static> {
         let res = {
             match &self.content {
-                Ok(t) => json::to_string(t),
-                Err(e) => json::to_string(e),
+                Ok(t) => serde_json::to_string(t),
+                Err(e) => serde_json::to_string(e),
             }
         };
         res.map(|mut string| {

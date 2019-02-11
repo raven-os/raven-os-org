@@ -1,9 +1,9 @@
 //! Contains all newsletter routes
 
-use crate::json;
 use rocket::http::Status;
-use rocket::State;
-use rocket_contrib::Json;
+use rocket::{get, post, delete, State};
+use rocket_contrib::json::Json;
+use serde::{Serialize, Deserialize};
 
 use crate::app::newsletter::Newsletter;
 use crate::app::{ApiError, ApiResult};
@@ -13,12 +13,12 @@ use crate::db::DbConnection;
 // The following structures are used as parameter for API endpoints
 
 #[derive(Serialize, Deserialize, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug, Default)]
-struct NewUser {
+pub struct NewUser {
     email: String,
 }
 
 #[derive(Serialize, Deserialize, Clone, Eq, PartialEq, Ord, PartialOrd, Hash, Debug, Default)]
-struct IdentifiedUser {
+pub struct IdentifiedUser {
     email: String,
     token: String,
 }
@@ -56,7 +56,7 @@ struct IdentifiedUser {
  *       }
  */
 #[post("/", format = "application/json", data = "<data>")]
-fn add(
+pub fn add(
     newsletter: State<Newsletter>,
     connection: DbConnection,
     data: Json<NewUser>,
@@ -99,15 +99,15 @@ fn add(
  *      }
  */
 #[delete("/", format = "application/json", data = "<data>")]
-fn remove(
+pub fn remove(
     newsletter: State<Newsletter>,
     connection: DbConnection,
     data: Json<IdentifiedUser>,
-) -> ApiResult<json::Value, ApiError> {
+) -> ApiResult<serde_json::Value, ApiError> {
     if let Err((code, error)) = newsletter.remove_user(&connection, &data.email, &data.token) {
         ApiResult::error(code, error)
     } else {
-        ApiResult::success(Status::Ok, json::Value::Object(json::Map::new()))
+        ApiResult::success(Status::Ok, serde_json::Value::Object(serde_json::Map::new()))
     }
 }
 
@@ -143,7 +143,7 @@ fn remove(
  *      }
  */
 #[get("/<admin_token>")]
-fn dump(
+pub fn dump(
     newsletter: State<Newsletter>,
     connection: DbConnection,
     admin_token: String,

@@ -11,9 +11,9 @@ pub mod app;
 pub mod db;
 pub mod routes;
 
-use rocket;
 use crate::app::newsletter::Newsletter;
 use crate::app::App;
+use rocket;
 
 /// Retrieves the needed environment variables or exits
 fn get_env(var: &str) -> String {

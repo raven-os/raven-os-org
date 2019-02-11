@@ -1,9 +1,9 @@
 //! Contains all newsletter routes
 
 use rocket::http::Status;
-use rocket::{get, post, delete, State};
+use rocket::{delete, get, post, State};
 use rocket_contrib::json::Json;
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 use crate::app::newsletter::Newsletter;
 use crate::app::{ApiError, ApiResult};
@@ -107,7 +107,10 @@ pub fn remove(
     if let Err((code, error)) = newsletter.remove_user(&connection, &data.email, &data.token) {
         ApiResult::error(code, error)
     } else {
-        ApiResult::success(Status::Ok, serde_json::Value::Object(serde_json::Map::new()))
+        ApiResult::success(
+            Status::Ok,
+            serde_json::Value::Object(serde_json::Map::new()),
+        )
     }
 }
 

@@ -1,8 +1,8 @@
 //! This module contains structures used to represent all data stored in database
 //! by the newsletter system.
 
-use serde::{Serialize, Deserialize};
 use crate::db::newsletter::schema::newsletter_users;
+use serde::{Deserialize, Serialize};
 
 /// Represents a user suscribed to the newsletter
 #[derive(

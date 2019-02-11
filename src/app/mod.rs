@@ -5,13 +5,12 @@ use rocket::response::Responder;
 use rocket::response::{self, content};
 use rocket::Request;
 
-use failure::Error;
-use serde::{Serialize, Deserialize};
-use serde_json;
 use diesel::mysql::MysqlConnection;
+use failure::Error;
 use r2d2::Pool;
 use r2d2_diesel::ConnectionManager;
-
+use serde::{Deserialize, Serialize};
+use serde_json;
 
 pub struct App {
     pool: Pool<ConnectionManager<MysqlConnection>>,

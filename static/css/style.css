@@ -1,15 +1,6 @@
-/*
-  Theme Name: Regna
-  Theme URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
-  Author: BootstrapMade.com
-  License: https://bootstrapmade.com/license/
-*/
-
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-
-/* Global variables */
 
 :root {
   --accent: #ed254e;
@@ -29,14 +20,18 @@ body {
   padding: 0;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 a {
-  color: var(--primary-dark);
+  /* color: var(--primary-dark); */
+  color: var(--accent);
 }
 
 a:hover, a:active, a:focus {
   color: var(--accent);
-  outline: none;
-  text-decoration: none;
 }
 
 p {
@@ -101,9 +96,10 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 
 #header {
-  padding: 30px 0;
-  height: 92px;
+  padding: 10px 0;
+  height: 61px;
   position: fixed;
+  line-height: 24px;
   left: 0;
   top: 0;
   right: 0;
@@ -118,8 +114,8 @@ h1, h2, h3, h4, h5, h6 {
 #header #logo h1 {
   font-size: 36px;
   margin: 0;
-  padding: 6px 0;
-  line-height: 1;
+  padding: 10px 0;
+  line-height: 24px;
   font-family: sans-serif;
   font-weight: 700;
   letter-spacing: 3px;
@@ -145,10 +141,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header.header-fixed {
-  background: rgba(52, 52, 50, 0.9);
-  box-shadow: 0px 2px 5px var(--primary-dark);
-  padding: 20px 0;
-  height: 72px;
+  /* background: rgba(52, 52, 50, 0.9); */
+  background-color: var(--primary-dark);
+  /* box-shadow: 0px 2px 5px var(--primary-dark); */
+  padding: 10px 0;
+  height: 61px;
   transition: all 0.5s;
 }
 
@@ -594,14 +591,14 @@ section:hover .section-header .section-title {
 /* First point section */
 
 #first-point {
-  background-color: var(--primary);
+  background-color: var(--mid-grey);
   padding: 80px 0 60px 0;
 }
 
 /* Second point section */
 
 #second-point {
-  background-color: var(--white);
+  background-color: var(--light-grey);
   background-size: cover;
   padding: 80px 0 60px 0;
 }
@@ -613,7 +610,7 @@ section:hover .section-header .section-title {
 /* Third point section */
 
 #third-point {
-  background-color: var(--primary);
+  background-color: var(--mid-grey);
   background-size: cover;
   padding: 80px 0 60px 0;
 }
@@ -854,10 +851,11 @@ section:hover .section-header .section-title {
 
 #footer {
   background: var(--primary-dark);
-  box-shadow: 0px -2px 5px var(--primary-dark);
-  padding: 30px 0;
+  /* box-shadow: 0px -2px 5px var(--primary-dark); */
+  padding: 15px 0;
   color: var(--primary);
   font-size: 14px;
+  height: 61px;
 }
 
 #footer .copyright {

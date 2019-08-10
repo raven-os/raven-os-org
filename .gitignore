@@ -6,6 +6,7 @@
 # Tool to manage environment variables
 .env
 Rocket.toml
+diesel.toml
 
 # Generated documentation
 docs

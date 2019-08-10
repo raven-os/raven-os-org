@@ -1,8 +1,4 @@
 @import url("/css/style.css");
-body {
-  background: var(--primary);
-}
-
 #header {
   background: var(--primary-dark);
 }
@@ -47,10 +43,6 @@ h5 {
   height: 150px;
 }
 
-.logo-box-big {
-  /* padding: 15px 0px; */
-}
-
 .logo-box-big img {
   height: 150px;
 }
@@ -65,31 +57,6 @@ h5 {
 
 .logo-box-transparent-margin {
   padding: 21px;
-}
-
-.mainlogo-container .btn-dl {
-  font-family: sans-serif;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 8px;
-  transition: 0.5s;
-  /* margin: 10px 25px; */
-  border: 2px solid var(--accent);
-  border-radius: 3px;
-  color: var(--primary);
-  background: rgba(237, 37, 78, 0.8);
-  text-align: center;
-  vertical-align: middle;
-}
-
-.mainlogo-container .btn-dl:hover {
-  background: var(--accent);
-  border: 2px solid var(--accent);
-  border-radius: 2px;
-  color: var(--primary);
 }
 
 .mainlogo-explain {
